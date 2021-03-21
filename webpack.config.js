@@ -23,7 +23,7 @@ module.exports = {
         use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
-        test: /\.(svg|png|jpe?g|gif|eot|woff|woff2|ttf)$/,
+        test: /\.(svg|png|jpe?g|gif|eot|woff|woff2|ttf|json)$/,
         use: ["file-loader"]
       }
     ]
@@ -32,10 +32,10 @@ module.exports = {
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
-        {
-          from: "./src/assets/images/*",
-          to: "assets/images/[name][ext]"
-        }
+        { from: "./src/assets/images/*", to: "assets/images/[name][ext]" },
+        { from: "./src/assets/icons/*", to: "assets/icons/[name][ext]" },
+        { from: "./src/assets/logo/*", to: "assets/logo/[name][ext]" },
+        { from: "./src/data/*", to: "data/[name][ext]" }
       ]
     }),
     new HtmlWebpackPlugin({
