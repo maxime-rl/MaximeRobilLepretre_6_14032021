@@ -11,8 +11,7 @@
 <body>
   <!-- HEADER -->
   <header>
-    <!-- Idem que sur l'index, tester de cacher du texte tout en le rendant accessible pour les lecteurs d'ecran -->
-    <a href="index.html" class="visually-hidden">Fisheye Home page
+    <a href="index.html">
       <img src="./assets/logo/logo-fisheye.svg" alt="Fisheye Home page">
     </a>
   </header>
@@ -45,7 +44,7 @@
   <div 
     role="dialog" 
     aria-labelledby="dialog-form" 
-    aria-describedby="dialog-desc"
+    aria-describedby="contact form"
     aria-modal="true"
     aria-hidden="true"
     tabindex="-1">
@@ -54,17 +53,17 @@
         <header aria-label="contact form header">
           <h1>Contactez-moi</h1>
           <button type="button" id="btn-close-form" data-dismiss="dialog-form" aria-label="Close Contact form">
-            <img src="./assets/icons/close-form.svg" alt="Close Contact form">
+            <img src="./assets/icons/close-form.svg" alt="Close Contact form" aria-hidden="true">
           </button>
         </header>
         <label for="first-name">Prénom</label>
-        <input type="text" name="first-name" id="first-name" aria-labelledby="label-firstname">
+        <input type="text" name="first-name" id="first-name" aria-labelledby="label-firstname" aria-required=true>
         <label for="last-name">Prénom</label>
-        <input type="text" name="last-name" id="last-name" aria-labelledby="label-lastname">
+        <input type="text" name="last-name" id="last-name" aria-labelledby="label-lastname" aria-required=true>
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" aria-labelledby="label-email">
+        <input type="email" name="email" id="email" aria-labelledby="label-email" aria-required=true>
         <label for="comment">Votre message</label>
-        <textarea name="comment" id="comment" cols="15" rows="5" aria-labelledby="label-comment"></textarea>
+        <textarea name="comment" id="comment" cols="15" rows="5" aria-labelledby="label-comment"aria-required=true></textarea>
         <input type="submit" value="Envoyer">
       </form>
     </div>
@@ -73,21 +72,21 @@
   <div 
     role="dialog"
     aria-labelledby="dialog-medias" 
-    aria-describedby="dialog-desc"
+    aria-describedby="medias modal"
     aria-modal="true"
     aria-hidden="true"
     tabindex="-1">
     <div role="document">
       <button type="button" id="btn-close-medias" data-dismiss="dialog-medias" aria-label="Close dialog">
-        <img src="./assets/icons/close-lightbox.svg" alt="Close dialog">
+        <img src="./assets/icons/close-lightbox.svg" alt="Close dialog" aria-hidden="true">
       </button>
       <button type="button" role="link" aria-label="Previous image">
-        <img src="./assets/icons/arrow.svg" alt="Previous image">
+        <img src="./assets/icons/arrow.svg" alt="Previous image" aria-hidden="true">
       </button>
       <!-- Récupération des images ou vidéos -->
       <div id="medias"></div>
       <button type="button" role="link" aria-label="Next image">
-        <img src="./assets/icons/arrow.svg" alt="Next image">
+        <img src="./assets/icons/arrow.svg" alt="Next image" aria-hidden="true">
       </button>
     </div>
   </div>
