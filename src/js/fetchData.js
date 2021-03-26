@@ -1,10 +1,11 @@
-import { createPhotographersList } from "./index.js";
+import { createPhotographerCard, createFilterTagsList } from "./index.js";
 
 const fetchData = async () => {
   try {
     const response = await fetch("./data/FishEyeData.json");
     const data = await response.json();
-    createPhotographersList(data);
+    createPhotographerCard(data);
+    createFilterTagsList(data);
   } catch (e) {
     console.log("e : ", e);
   }
