@@ -11,44 +11,104 @@ fetchData();
 const photographersList = document.querySelector(".photographers-list");
 const filterTagsList = document.querySelector(".filter-tags-list");
 
-/**
- * 1er test photographer card avec innerHTML
- */
-function createPhotographerCard (data) {
-  data.photographers.map(photographer => {
-    const photographerCard = document.createElement("li");
-    photographerCard.classList.add("photographer-card");
-    const template = `
-      <a href="photographers.html?id=${photographer.id}">
-        <img src="../assets/images/${photographer.portrait}" alt="${photographer.name}">
-        <h2>${photographer.name}</h2>
-      </a>
-      <p>${photographer.city}, ${photographer.country}</p>
-      <p>${photographer.tagline}</p>
-      <p>${photographer.price}€/jour</p>
-      <ul>
-          ${photographer.tags.map(tag => `<li><a href="index.html" class="filter-tag"><span>#</span>${tag}</a></li>`).join(" ")}
-      </ul>
-    `;
-    photographerCard.innerHTML = template;
-    photographersList.appendChild(photographerCard);
+const createFilterTagsNavList = (data) => {
+  collectSortedTags(data).forEach((tag) => {
+    const filterTagNavLi = document.createElement("li");
+    const filterTagNavLink = createLinkElement("index.html");
+    const spanForScreenReader = createTextElement("span", "sr-only", "tag");
+    filterTagNavLink.textContent = "#" + tag;
+    filterTagNavLink.appendChild(spanForScreenReader);
+    filterTagNavLi.appendChild(filterTagNavLink);
+    filterTagsList.appendChild(filterTagNavLi);
   });
-}
+};
 
-function createFilterTagsList (data) {
+const uniqueTagsArr = (data) => {
+  const tags = new Set();
+
+  for (const photographer of data.photographers) {
+    for (let tag of photographer.tags) {
+      tag = tag.toLowerCase();
+      tags.add(tag);
+    }
+  }
+  return [...tags];
+};
+
+const collectSortedTags = (data) => {
+  const tags = uniqueTagsArr(data);
+
+  return tags.sort();
+};
+
+const createPhotographerCard = (data) => {
   data.photographers.map(photographer => {
+    const photographerCard = createElementWithClassCss("li", "photographer-card");
+    const photographerLink = createLinkElement(`photographer.html?id=${photographer.id}`);
+    photographerLink.setAttribute("tabindex", 0);
+    const spanForScreenReader = createTextElement("span", "sr-only", `${photographer.name}`);
+    spanForScreenReader.classList.add("sr-only-focusable");
+    const photographerImg = createImgElement(`../assets/images/${photographer.portrait}`, " ");
+    const photographerName = createTextElement("h2", "photographer-name", `${photographer.name}`);
+    const photographerLocation = createTextElement("p", "photographer-location", (`${photographer.city}, ${photographer.country}`));
+    const photographerTagline = createTextElement("p", "photographer-tagline", `${photographer.tagline}`);
+    const photographerPrice = createTextElement("p", "photographer-price", `${photographer.price}€/jour`);
+    const photographerTagsList = document.createElement("ul");
+
     photographer.tags.forEach((tag) => {
-      // const test2 = [];
-      // test2.push(tag);
-      // console.log(test2);
-      const filterTagLi = document.createElement("li");
-      const filterTagLink = document.createElement("a");
-      filterTagLink.textContent = tag;
-      filterTagLi.appendChild(filterTagLink);
-      filterTagsList.appendChild(filterTagLi);
+      const photographerTagLi = document.createElement("li");
+      const photographerTagLink = document.createElement("a");
+      photographerTagLink.classList.add("filter-tag");
+      photographerTagLink.setAttribute("href", "index.html");
+      const spanForScreenReader = createTextElement("span", "sr-only", "tag");
+      photographerTagLink.textContent = "#" + tag;
+
+      photographerTagLink.appendChild(spanForScreenReader);
+      photographerTagLi.appendChild(photographerTagLink);
+      photographerTagsList.appendChild(photographerTagLi);
     });
+
+    photographersList.appendChild(photographerCard);
+
+    photographerLink.insertAdjacentElement("afterbegin", spanForScreenReader);
+    photographerLink.insertAdjacentElement("afterbegin", photographerImg);
+    photographerLink.insertAdjacentElement("beforeend", photographerName);
+    photographerCard.insertAdjacentElement("afterbegin", photographerLink);
+    photographerCard.insertAdjacentElement("beforeend", photographerLocation);
+    photographerCard.insertAdjacentElement("beforeend", photographerTagline);
+    photographerCard.insertAdjacentElement("beforeend", photographerPrice);
+    photographerCard.insertAdjacentElement("beforeend", photographerTagsList);
   });
-}
+};
+
+const createTextElement = (htmlTag, classCSS, text) => {
+  const element = createElementWithClassCss(htmlTag, classCSS);
+  element.textContent = text;
+
+  return element;
+};
+
+const createLinkElement = (link) => {
+  const element = document.createElement("a");
+  element.setAttribute("href", link);
+
+  return element;
+};
+
+const createElementWithClassCss = (htmlTag, classCSS) => {
+  const element = document.createElement(htmlTag);
+  element.classList.add(classCSS);
+
+  return element;
+};
+
+const createImgElement = (src, alt) => {
+  const element = document.createElement("img");
+  element.setAttribute("src", src);
+  element.setAttribute("alt", alt);
+
+  return element;
+};
 
 /**
  * 2eme test photographer card avec insertAdjacentElement
@@ -113,4 +173,4 @@ function createFilterTagsList (data) {
 // }
 
 export { createPhotographerCard };
-export { createFilterTagsList };
+export { createFilterTagsNavList };
