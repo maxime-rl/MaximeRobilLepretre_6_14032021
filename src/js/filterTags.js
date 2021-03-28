@@ -1,6 +1,6 @@
 import { createElementFactory } from "./createElementFactory.js";
 
-const filterTagsList = document.querySelector(".filter-tags-list");
+const filterTagsList = document.querySelector(".nav-tags-list");
 
 /**
  * Create DOM elements for the navigation list
@@ -10,8 +10,8 @@ const filterTagsList = document.querySelector(".filter-tags-list");
  */
 const createFilterTagsNavList = (data) => {
   collectSortedTags(data).forEach((tag) => {
-    const liEl = document.createElement("li");
-    const aEl = createElementFactory("a", { href: "index.html" });
+    const liEl = createElementFactory("li");
+    const aEl = createElementFactory("a", { href: "#", class: "tag", "data-filter": `${tag}` });
     const span = createElementFactory("span", { class: "sr-only" }, "tag");
     aEl.textContent = "#" + tag;
     aEl.appendChild(span);
@@ -36,7 +36,6 @@ const createUniqueTagsArr = (data) => {
       tags.add(tag);
     }
   }
-  console.log(tags);
   return [...tags];
 };
 
@@ -52,4 +51,16 @@ const collectSortedTags = (data) => {
   return tags.sort();
 };
 
+// TEST FILTER TAGS
+// TOGGLE CLASS TAG ACTIVE
+const filterTags = () => {
+  const filterTagsEl = filterTagsList.getElementsByClassName("tag");
+  for (let i = 0; i < filterTagsEl.length; i++) {
+    filterTagsEl[i].addEventListener("click", function () {
+      filterTagsEl[i].classList.toggle("tag--active");
+    });
+  }
+};
+
 export { createFilterTagsNavList };
+export { filterTags };
