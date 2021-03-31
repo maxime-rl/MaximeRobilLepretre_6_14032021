@@ -26,7 +26,7 @@ export class Photographer {
 
     this.tags.forEach(tag => {
       const liElTag = document.createElement("li");
-      const aElTag = createElementFactory("a", { href: "index.html", class: "tag", "data-tag": `${tag}` });
+      const aElTag = createElementFactory("a", { href: "index.html", class: "tag" });
       const spanElTag = createElementFactory("span", { class: "sr-only" }, "tag");
       aElTag.textContent = "#" + tag;
       aElTag.appendChild(spanElTag);

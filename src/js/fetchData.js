@@ -1,5 +1,5 @@
 import { createPhotographersMainList } from "./index.js";
-import { createFilterTagsNavList, filterTags } from "./filterTags.js";
+import { createFilterTagsNavList, filteringPhotographersByTags } from "./filterTags.js";
 
 /**
  * Fetch photographers data
@@ -11,7 +11,7 @@ const fetchData = async () => {
     // createPhotographerCard(data);
     createPhotographersMainList(data);
     createFilterTagsNavList(data);
-    filterTags(data);
+    filteringPhotographersByTags(data);
   } catch (e) {
     console.log("e : ", e);
   }
