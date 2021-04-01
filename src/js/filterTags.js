@@ -34,7 +34,7 @@ const createFilterTagsNavList = (data) => {
  * Create tags list without duplicates
  *
  * @param {object} data
- * @returns {object}
+ * @returns {array} unique tag array
  */
 const createUniqueTagsArr = (data) => {
   const tags = new Set();
@@ -52,7 +52,7 @@ const createUniqueTagsArr = (data) => {
  * Sort tags alphabetically
  *
  * @param {object} data
- * @returns {array} unique tag list sort alphabetically for navigation
+ * @returns {array} unique tag array sort alphabetically for navigation
  */
 const collectSortedTags = (data) => {
   const tags = createUniqueTagsArr(data);
@@ -61,7 +61,7 @@ const collectSortedTags = (data) => {
 };
 
 /**
- * Filtering photographers by tags
+ * Filtering photographers by tags with data attributs
  *
  * @param {object} data
  */
@@ -80,18 +80,19 @@ const filteringPhotographersByTags = (data) => {
       }
 
       el.classList.add("tag--active");
+      // storage data attribute filter on click on each tag
       const dataSetFilterTagNav = el.dataset.filter;
-
+      // compare data attribute filter in tags of each photographer and show or hide photographer
       for (let i = 0; i < data.photographers.length; i++) {
         if (!data.photographers[i].tags.includes(dataSetFilterTagNav)) {
           photographerCard[i].classList.add("hide");
           photographerCard[i].classList.remove("show");
-          console.log(photographerCard[i]);
         } else {
           photographerCard[i].classList.remove("hide");
           photographerCard[i].classList.add("show");
         }
       }
+      // show all photographers if tag all is active
       if (dataSetFilterTagNav === "all") {
         for (const photographer of photographersList.children) {
           photographer.classList.remove("hide");
