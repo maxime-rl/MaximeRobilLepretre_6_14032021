@@ -18,33 +18,19 @@
   <!-- MAIN -->
   <main>
     <section>
-      <header class="photographer-header">
-        <h1></h1>
-        <p></p>
-        <p></p>
-        <ul></ul>
-        <button 
-          type="button" 
-          aria-controls="dialog-form" 
-          aria-haspopup="dialog" 
-          title="Contact me">
-          Contactez-moi
-        </button>
-      </header>
-      <label for="sort-by"></label>
-      <select name="sort-media" id="sort-by">
-        <option value="Popularité"></option>
-        <option value="Date"></option>
-        <option value="Titre"></option>
-      </select>
+      <header class="photographer-header"></header>
+      <ul role="listbox" tabindex="0" id="listbox" aria-activedescendant="listbox-1">
+        <li role="option" id="listbox-1" tabindex="-1">Popularité</li>
+        <li role="option" id="listbox-2" tabindex="-1">Date</li>
+        <li role="option" id="listbox-3" tabindex="-1">Titre</li>
+      </ul>
+      <!-- create list media elements in JS header photographer -->
       <ul></ul>
     </section>
   </main>
   <!-- MODAL FORM -->
   <div 
     role="dialog" 
-    aria-labelledby="dialog-form" 
-    aria-describedby="contact form"
     aria-modal="true"
     aria-hidden="true"
     tabindex="-1">
@@ -57,13 +43,13 @@
           </button>
         </header>
         <label for="first-name">Prénom</label>
-        <input type="text" name="first-name" id="first-name" aria-labelledby="label-firstname" aria-required=true>
+        <input type="text" name="first-name" id="first-name" aria-labelledby="first-name" aria-required=true>
         <label for="last-name">Prénom</label>
-        <input type="text" name="last-name" id="last-name" aria-labelledby="label-lastname" aria-required=true>
+        <input type="text" name="last-name" id="last-name" aria-labelledby="last-name" aria-required=true>
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" aria-labelledby="label-email" aria-required=true>
+        <input type="email" name="email" id="email" aria-labelledby="email" aria-required=true>
         <label for="comment">Votre message</label>
-        <textarea name="comment" id="comment" cols="15" rows="5" aria-labelledby="label-comment"aria-required=true></textarea>
+        <textarea name="comment" id="comment" cols="15" rows="5" aria-labelledby="comment" aria-required=true></textarea>
         <input type="submit" value="Envoyer">
       </form>
     </div>
@@ -71,8 +57,6 @@
   <!-- LIGHTBOX MEDIAS -->
   <div 
     role="dialog"
-    aria-labelledby="dialog-medias" 
-    aria-describedby="medias modal"
     aria-modal="true"
     aria-hidden="true"
     tabindex="-1">

@@ -19,9 +19,9 @@ const createPhotographersMainList = (data) => {
       photographer.portrait,
       photographer.city,
       photographer.country,
-      photographer.price,
+      photographer.tags,
       photographer.tagline,
-      photographer.tags
+      photographer.price
     ).createMainDomElements());
   });
 };
