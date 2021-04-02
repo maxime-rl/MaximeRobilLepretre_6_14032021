@@ -60,7 +60,7 @@ var Photographer = /*#__PURE__*/function () {
         class: "sr-only sr-only-focusable"
       }, "".concat(this.name));
       var imgElPhotographer = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_3__.createElementFactory)("img", {
-        src: "../assets/medias/".concat(this.portrait),
+        src: "./assets/medias/".concat(this.portrait),
         alt: " "
       });
       var h2ElPhotographer = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_3__.createElementFactory)("h2", {}, "".concat(this.name));
@@ -103,7 +103,7 @@ var Photographer = /*#__PURE__*/function () {
       var photographerHeader = document.querySelector(".photographer-header");
       var ulElPhotographer = document.createElement("ul");
       var imgElPhotographer = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_3__.createElementFactory)("img", {
-        src: "../assets/medias/".concat(this.portrait),
+        src: "./assets/medias/".concat(this.portrait),
         alt: " "
       });
       var h1ElPhotographer = (0,_createElementFactory_js__WEBPACK_IMPORTED_MODULE_3__.createElementFactory)("h1", {}, "".concat(this.name));
@@ -255,12 +255,12 @@ var fetchData = /*#__PURE__*/function () {
           case 6:
             data = _context.sent;
 
-            if (window.location.pathname.includes("index.html")) {
+            if (window.location.pathname.includes("photographer.html")) {
+              (0,_photographerProfil_js__WEBPACK_IMPORTED_MODULE_7__.createPhotographerProfilPage)(data);
+            } else {
               (0,_index_js__WEBPACK_IMPORTED_MODULE_5__.createPhotographersMainList)(data);
               (0,_filterTags_js__WEBPACK_IMPORTED_MODULE_6__.createFilterTagsNavList)(data);
               (0,_filterTags_js__WEBPACK_IMPORTED_MODULE_6__.filteringPhotographersByTags)(data);
-            } else if (window.location.pathname.includes("photographer.html")) {
-              (0,_photographerProfil_js__WEBPACK_IMPORTED_MODULE_7__.createPhotographerProfilPage)(data);
             }
 
             _context.next = 13;
