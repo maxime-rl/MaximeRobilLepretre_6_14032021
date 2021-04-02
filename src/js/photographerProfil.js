@@ -24,23 +24,4 @@ const createPhotographerProfilPage = (data) => {
   return photographerHeader;
 };
 
-//   const mediaList = [];
-
-//   data.media.forEach((media) => {
-//     if (media.photographerId === currentPhotographer.id) {
-//       mediaList.push(new MediasFactory(
-//         media.id,
-//         media.photographerId,
-//         media.image?.split(".").pop() || media.video?.split(".").pop(),
-//         media.image || media.video,
-//         media.tags,
-//         media.likes,
-//         media.date,
-//         media.price,
-//         media.alt
-//       ).createMedia());
-//     }
-//   });
-// };
-
 export { createPhotographerProfilPage };
