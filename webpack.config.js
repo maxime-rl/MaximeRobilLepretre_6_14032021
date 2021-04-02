@@ -8,7 +8,7 @@ module.exports = {
     main: path.join(__dirname, "src/js/index.js")
   },
   output: {
-    path: path.join(__dirname, "dist"),
+    path: path.join(__dirname, "public"),
     filename: "[name].bundle.js"
   },
   module: {
@@ -52,7 +52,7 @@ module.exports = {
   mode: "development",
   devServer: {
     open: false,
-    contentBase: "./dist",
+    contentBase: "./public",
     inline: true,
     port: 4000
   }

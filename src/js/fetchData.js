@@ -9,12 +9,12 @@ const fetchData = async () => {
   try {
     const response = await fetch("./data/FishEyeData.json");
     const data = await response.json();
-    if (window.location.pathname.includes("index.html")) {
+    if (window.location.pathname.includes("photographer.html")) {
+      createPhotographerProfilPage(data);
+    } else {
       createPhotographersMainList(data);
       createFilterTagsNavList(data);
       filteringPhotographersByTags(data);
-    } else if (window.location.pathname.includes("photographer.html")) {
-      createPhotographerProfilPage(data);
     }
   } catch (e) {
     console.log("e : ", e);

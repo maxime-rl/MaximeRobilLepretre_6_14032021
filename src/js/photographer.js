@@ -18,7 +18,7 @@ export class Photographer {
     const liElPhotographer = createElementFactory("li", { class: "photographer" });
     const aELPhotographer = createElementFactory("a", { href: `photographer.html?id=${this.id}`, tabindex: "0" });
     const spanElPhotographer = createElementFactory("span", { class: "sr-only sr-only-focusable" }, `${this.name}`);
-    const imgElPhotographer = createElementFactory("img", { src: `../assets/medias/${this.portrait}`, alt: " " });
+    const imgElPhotographer = createElementFactory("img", { src: `./assets/medias/${this.portrait}`, alt: " " });
     const h2ElPhotographer = createElementFactory("h2", {}, `${this.name}`);
     const pElPhotographerLocation = createElementFactory("p", { class: "photographer__location" }, (`${this.city}, ${this.country}`));
     const pElPhotographerTagline = createElementFactory("p", { class: "photographer__tagline" }, `${this.tagline}`);
@@ -48,7 +48,7 @@ export class Photographer {
   createProfilHeaderDomElements () {
     const photographerHeader = document.querySelector(".photographer-header");
     const ulElPhotographer = document.createElement("ul");
-    const imgElPhotographer = createElementFactory("img", { src: `../assets/medias/${this.portrait}`, alt: " " });
+    const imgElPhotographer = createElementFactory("img", { src: `./assets/medias/${this.portrait}`, alt: " " });
     const h1ElPhotographer = createElementFactory("h1", {}, `${this.name}`);
     const pElPhotographerLocation = createElementFactory("p", { class: "photographer__location" }, (`${this.city}, ${this.country}`));
     const pElPhotographerTagline = createElementFactory("p", { class: "photographer__tagline" }, `${this.tagline}`);
