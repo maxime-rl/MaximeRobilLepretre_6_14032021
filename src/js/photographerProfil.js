@@ -1,11 +1,11 @@
 import "../styles/main.scss";
 
 import { Photographer } from "./Photographer.js";
-// import { MediasFactory } from "./Media.js";
+import { MediasFactory } from "./MediasFactory.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 
-const createPhotographerProfilPage = (data) => {
+const createPhotographerHeaderProfil = (data) => {
   let photographerHeader = "";
   data.photographers.forEach((photographer) => {
     if (photographer.id === Number(urlParams.get("id"))) {
@@ -24,4 +24,28 @@ const createPhotographerProfilPage = (data) => {
   return photographerHeader;
 };
 
-export { createPhotographerProfilPage };
+const mediaFactory = new MediasFactory();
+
+const createPhotographerMediasList = (data) => {
+  let mediasList = [];
+
+  data.media.forEach((media) => {
+    if (media.photographerId === Number(urlParams.get("id"))) {
+      mediasList = mediaFactory.createMedia(
+        media.id,
+        media.photographerId,
+        media.image?.split(".").pop() || media.video?.split(".").pop(),
+        media.image || media.video,
+        media.tags,
+        media.likes,
+        media.date,
+        media.price,
+        media.alt
+      ).createMediaDomElement();
+      return mediasList;
+    }
+  });
+};
+
+export { createPhotographerHeaderProfil };
+export { createPhotographerMediasList };

@@ -1,13 +1,118 @@
+header {
+  padding: 40px 20px 0 20px;
+
+  @include breakpoint(lg) {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: "logo nav nav nav nav . ";
+    padding: 40px 20px;
+  }
+
+  @include breakpoint(xl) {
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-areas: "logo nav nav nav nav . . ";
+  }
+
+  img {
+    grid-area: logo;
+    width: 150px;
+    height: auto;
+  }
+
+  nav {
+    grid-area: nav;
+    margin-top: 35px;
+
+    @include breakpoint(lg) {
+      margin-top: 6px;
+    }
+  }
+
+  .skip-link {
+    position: absolute;
+    text-align: center;
+    transform: translate(-50%, -500%);
+    left: 50%;
+    padding: 7px;
+    width: 17rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    border-radius: $radius-button;
+    color: $color-text-primary;
+    background-color: $color-tertiary;
+    transition: transform 0.3s ease-in-out;
+
+    &:focus {
+      transform: translate(-50%, -110%);
+      transition: transform 0.3s;
+    }
+  }
+}
+
+main {
+  padding: 20px;
+
+  h1 {
+    position: absolute;
+    top: 28px;
+    right: 20px;
+    font-size: 14px;
+    color: $color-primary;
+  
+    @include breakpoint(xl) {
+      top: 10px;
+      font-size: 36px;
+    }
+  }
+}
+
 .photographers-list {
   text-align: center;
+
+  @include breakpoint(md) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+
+  @include breakpoint(xl) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .photographer {
   text-align: center;
   padding: 30px 15px;
+
   img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
+  }
+
+  h2 {
+    margin: 20px 0 5px 0;
+    font-size: 3.6rem;
+    color: $color-secondary;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .photographer__location {
+    font-size: 1.3rem;
+    color: $color-primary;
+  }
+
+  .photographer__tagline {
+    font-size: 1rem;
+    color: $color-text-primary;
+  }
+
+  .photographer__price {
+    font-size: 0.9rem;
+    color: $color-text-tertiary;
   }
 }

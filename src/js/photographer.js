@@ -13,62 +13,68 @@ export class Photographer {
   }
 
   createMainDomElements () {
-    const photographersList = document.querySelector(".photographers-list");
-    const ulElPhotographer = document.createElement("ul");
-    const liElPhotographer = createElementFactory("li", { class: "photographer" });
-    const aELPhotographer = createElementFactory("a", { href: `photographer.html?id=${this.id}`, tabindex: "0" });
-    const spanElPhotographer = createElementFactory("span", { class: "sr-only sr-only-focusable" }, `${this.name}`);
-    const imgElPhotographer = createElementFactory("img", { src: `./assets/medias/${this.portrait}`, alt: " " });
-    const h2ElPhotographer = createElementFactory("h2", {}, `${this.name}`);
-    const pElPhotographerLocation = createElementFactory("p", { class: "photographer__location" }, (`${this.city}, ${this.country}`));
-    const pElPhotographerTagline = createElementFactory("p", { class: "photographer__tagline" }, `${this.tagline}`);
-    const pElPhotographerPrice = createElementFactory("p", { class: "photographer__price" }, `${this.price}€/jour`);
+    const listElt = document.querySelector(".photographers-list");
+    const cardElt = createElementFactory("li", { class: "photographer" });
+    const linkElt = createElementFactory("a", { href: `photographer.html?id=${this.id}`, tabindex: "0" });
+    const screenOnlyElt = createElementFactory("span", { class: "sr-only sr-only-focusable" }, `${this.name}`);
+    const imageElt = createElementFactory("img", { src: `./assets/medias/${this.portrait}`, alt: " " });
+    const nameElt = createElementFactory("h2", {}, `${this.name}`);
+    const locationElt = createElementFactory("p", { class: "photographer__location" }, (`${this.city}, ${this.country}`));
+    const taglineElt = createElementFactory("p", { class: "photographer__tagline" }, `${this.tagline}`);
+    const pricingElt = createElementFactory("p", { class: "photographer__price" }, `${this.price}€/jour`);
+    const tagsElt = createElementFactory("ul", { class: "tags-list" });
 
     this.tags.forEach(tag => {
-      const liElTag = document.createElement("li");
-      const aElTag = createElementFactory("a", { href: "index.html", class: "tag" });
-      const spanElTag = createElementFactory("span", { class: "sr-only" }, "tag");
-      aElTag.textContent = "#" + tag;
-      aElTag.appendChild(spanElTag);
-      liElTag.appendChild(aElTag);
-      ulElPhotographer.appendChild(liElTag);
+      const tagElt = createElementFactory("li");
+      const linkTagElt = createElementFactory("a", { href: "index.html", class: "tag" });
+      const screenOnlyTagElt = createElementFactory("span", { class: "sr-only" }, "tag");
+
+      linkTagElt.textContent = "#" + tag;
+      linkTagElt.appendChild(screenOnlyTagElt);
+      tagElt.appendChild(linkTagElt);
+
+      tagsElt.appendChild(tagElt);
     });
 
-    aELPhotographer.appendChild(spanElPhotographer);
-    aELPhotographer.appendChild(imgElPhotographer);
-    aELPhotographer.appendChild(h2ElPhotographer);
-    liElPhotographer.appendChild(aELPhotographer);
-    liElPhotographer.appendChild(pElPhotographerLocation);
-    liElPhotographer.appendChild(pElPhotographerTagline);
-    liElPhotographer.appendChild(pElPhotographerPrice);
-    liElPhotographer.appendChild(ulElPhotographer);
-    photographersList.appendChild(liElPhotographer);
+    linkElt.appendChild(screenOnlyElt);
+    linkElt.appendChild(imageElt);
+    linkElt.appendChild(nameElt);
+
+    cardElt.appendChild(linkElt);
+    cardElt.appendChild(locationElt);
+    cardElt.appendChild(taglineElt);
+    cardElt.appendChild(pricingElt);
+    cardElt.appendChild(tagsElt);
+
+    listElt.appendChild(cardElt);
   }
 
   createProfilHeaderDomElements () {
-    const photographerHeader = document.querySelector(".photographer-header");
-    const ulElPhotographer = document.createElement("ul");
-    const imgElPhotographer = createElementFactory("img", { src: `./assets/medias/${this.portrait}`, alt: " " });
-    const h1ElPhotographer = createElementFactory("h1", {}, `${this.name}`);
-    const pElPhotographerLocation = createElementFactory("p", { class: "photographer__location" }, (`${this.city}, ${this.country}`));
-    const pElPhotographerTagline = createElementFactory("p", { class: "photographer__tagline" }, `${this.tagline}`);
-    const btnElPhotographer = createElementFactory("button", { type: "button", class: "btn", "aria-haspopup": "dialog", title: "Contact me" }, "Contactez-moi");
+    const headerElt = document.querySelector(".photographer-header");
+    const imageElt = createElementFactory("img", { src: `./assets/medias/${this.portrait}`, alt: " " });
+    const nameElt = createElementFactory("h1", {}, `${this.name}`);
+    const locationElt = createElementFactory("p", { class: "photographer__location" }, (`${this.city}, ${this.country}`));
+    const taglineElt = createElementFactory("p", { class: "photographer__tagline" }, `${this.tagline}`);
+    const tagsElt = document.createElement("ul");
+    const btnElt = createElementFactory("button", { type: "button", class: "btn", "aria-haspopup": "dialog", title: "Contact me" }, "Contactez-moi");
 
     this.tags.forEach(tag => {
       const liElTag = document.createElement("li");
       const aElTag = createElementFactory("a", { href: "index.html", class: "tag" });
       const spanElTag = createElementFactory("span", { class: "sr-only" }, "tag");
+
       aElTag.textContent = "#" + tag;
       aElTag.appendChild(spanElTag);
       liElTag.appendChild(aElTag);
-      ulElPhotographer.appendChild(liElTag);
+
+      tagsElt.appendChild(liElTag);
     });
 
-    photographerHeader.appendChild(imgElPhotographer);
-    photographerHeader.appendChild(h1ElPhotographer);
-    photographerHeader.appendChild(pElPhotographerLocation);
-    photographerHeader.appendChild(pElPhotographerTagline);
-    photographerHeader.appendChild(ulElPhotographer);
-    photographerHeader.appendChild(btnElPhotographer);
+    headerElt.appendChild(imageElt);
+    headerElt.appendChild(nameElt);
+    headerElt.appendChild(locationElt);
+    headerElt.appendChild(taglineElt);
+    headerElt.appendChild(tagsElt);
+    headerElt.appendChild(btnElt);
   }
 }
