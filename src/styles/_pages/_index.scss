@@ -1,5 +1,7 @@
-header {
+.home-header {
+  margin: 0 auto;
   padding: 40px 20px 0 20px;
+  max-width: 1440px;
 
   @include breakpoint(lg) {
     display: grid;
@@ -38,7 +40,7 @@ header {
     width: 17rem;
     font-size: 1.8rem;
     font-weight: 700;
-    border-radius: $radius-button;
+    border-radius: $radius-btn-img;
     color: $color-text-primary;
     background-color: $color-tertiary;
     transition: transform 0.3s ease-in-out;
@@ -50,18 +52,33 @@ header {
   }
 }
 
-main {
+.home-main {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1600px;
   padding: 20px;
 
   h1 {
     position: absolute;
-    top: 28px;
+    top: -169px;
     right: 20px;
     font-size: 14px;
     color: $color-primary;
+
+    @media (min-width: 369.9px) {
+      top: -141px;
+    }
+
+    @media (min-width: 639px) {
+      top: -113.5px;
+    }
+
+    @include breakpoint(lg) {
+      top: -92px;
+    }
   
     @include breakpoint(xl) {
-      top: 10px;
+      top: -109px;
       font-size: 36px;
     }
   }

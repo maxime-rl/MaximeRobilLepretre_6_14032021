@@ -1,10 +1,12 @@
 // Breakpoints
 
 $breakpoints: (
+  'xs': 400px,
   'sm': 576px,
   'md': 768px,
   'lg': 991px,
-  'xl': 1200px
+  'xl': 1200px,
+  'xxl': 1330px
 );
 
 // Use ex: @include breakpoint(md) { ... }

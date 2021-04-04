@@ -7,6 +7,8 @@
 
 .tag {
   display: flex;
+  position: relative;
+  z-index: 1;
   margin: 3px 6px 3px 0;
   padding: 2px 7px;
   color: $color-primary;
@@ -14,18 +16,42 @@
   border-radius: 12px;
   font-size: 1.2rem;
 
-  &:hover {
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    border: .5px solid transparent;
+    border-radius: 12px;
     background-color: $color-primary;
+    transition: all 0.1s ease-in;
+  }
+
+  &:hover {
     color: $color-body;
+
+    &::after {
+      opacity: 1;
+    }
   }
 
   &:focus {
-    background-color: $color-primary;
     color: $color-body;
+
+    &::after {
+      opacity: 1;
+    }
   }
 
   &--active {
-    background-color: $color-primary;
     color: $color-body;
+
+    &::after {
+      opacity: 1;
+    }
   }
 }

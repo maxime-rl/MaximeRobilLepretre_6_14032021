@@ -367,6 +367,11 @@ body {
   scroll-behavior: smooth;
 }
 
+.wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
 h1,
 h2,
 h3 {
@@ -383,7 +388,8 @@ a {
   text-decoration: none;
 }
 
-img {
+img,
+video {
   max-width: 100%;
   height: auto;
   object-fit: cover;

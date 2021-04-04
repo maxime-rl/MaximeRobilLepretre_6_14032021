@@ -1,6 +1,13 @@
 import { createPhotographersMainList } from "./index.js";
-import { createFilterTagsNavList, filteringPhotographersByTags } from "./filterTags.js";
-import { createPhotographerHeaderProfil, createPhotographerMediasList } from "./photographerProfil.js";
+import {
+  createFilterTagsNavList,
+  filteringPhotographersByTags
+} from "./filterTags.js";
+import {
+  createPhotographerHeaderProfil,
+  createPhotographerMediasList
+} from "./photographerProfil.js";
+import { createLikesCounterDomElements } from "./likes.js";
 
 /**
  * Fetch photographers data
@@ -12,6 +19,7 @@ const fetchData = async () => {
     if (window.location.pathname.includes("photographer.html")) {
       createPhotographerHeaderProfil(data);
       createPhotographerMediasList(data);
+      createLikesCounterDomElements(data);
     } else {
       createPhotographersMainList(data);
       createFilterTagsNavList(data);

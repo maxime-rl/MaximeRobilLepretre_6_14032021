@@ -50,13 +50,18 @@ export class Photographer {
   }
 
   createProfilHeaderDomElements () {
-    const headerElt = document.querySelector(".photographer-header");
+    const headerElt = document.querySelector(".profil-photographer-header");
     const imageElt = createElementFactory("img", { src: `./assets/medias/${this.portrait}`, alt: " " });
     const nameElt = createElementFactory("h1", {}, `${this.name}`);
     const locationElt = createElementFactory("p", { class: "photographer__location" }, (`${this.city}, ${this.country}`));
     const taglineElt = createElementFactory("p", { class: "photographer__tagline" }, `${this.tagline}`);
-    const tagsElt = document.createElement("ul");
-    const btnElt = createElementFactory("button", { type: "button", class: "btn", "aria-haspopup": "dialog", title: "Contact me" }, "Contactez-moi");
+    const tagsElt = createElementFactory("ul", { class: "tags-list" });
+    const btnElt = createElementFactory("button", {
+      type: "button",
+      class: "btn",
+      title: "Contact me",
+      "aria-haspopup": "dialog"
+    }, "Contactez-moi");
 
     this.tags.forEach(tag => {
       const liElTag = document.createElement("li");
@@ -71,10 +76,10 @@ export class Photographer {
     });
 
     headerElt.appendChild(imageElt);
+    nameElt.appendChild(btnElt);
     headerElt.appendChild(nameElt);
     headerElt.appendChild(locationElt);
     headerElt.appendChild(taglineElt);
     headerElt.appendChild(tagsElt);
-    headerElt.appendChild(btnElt);
   }
 }
