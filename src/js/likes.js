@@ -15,10 +15,8 @@ const createLikesCounterDomElements = (data) => {
   const heartElt = createElementFactory("i", { class: "fas fa-heart" });
 
   counterElt.appendChild(heartElt);
-
   asideElt.appendChild(counterElt);
   asideElt.appendChild(pricingElt);
-
   mainElt.appendChild(asideElt);
 };
 

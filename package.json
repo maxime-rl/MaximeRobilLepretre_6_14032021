@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack",
-    "deploy": "npm run webpack && git subtree push --prefix dist origin gh-pages",
+    "deploy": "npm run webpack && git subtree push --prefix public origin gh-pages",
     "lint": "eslint src/js/**/*.js --fix",
     "start": "webpack serve"
   },

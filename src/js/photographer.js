@@ -76,7 +76,9 @@ export class Photographer {
     });
 
     headerElt.appendChild(imageElt);
+
     nameElt.appendChild(btnElt);
+
     headerElt.appendChild(nameElt);
     headerElt.appendChild(locationElt);
     headerElt.appendChild(taglineElt);
