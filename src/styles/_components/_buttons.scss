@@ -1,0 +1,42 @@
+.btn {
+  position: relative;
+  display: block;
+  z-index: 1;
+  margin: auto;
+  padding: 10px 15px;
+  border-radius: $radius-btn-img;
+  color: $color-body;
+  background-color: $color-primary;
+  border: none;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    border-radius: $radius-btn-img;
+    background-color: $color-tertiary;
+    transition: all 0.1s ease-in-out;
+  }
+
+  &:hover {
+    color: $color-text-primary;
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &:focus {
+    color: $color-text-primary;
+    
+    &::after {
+      opacity: 1;
+    }
+  }
+}

@@ -1,6 +1,13 @@
 import { createPhotographersMainList } from "./index.js";
-import { createFilterTagsNavList, filteringPhotographersByTags } from "./filterTags.js";
-import { createPhotographerProfilPage } from "./photographerProfil.js";
+import {
+  createFilterTagsNavList,
+  filteringPhotographersByTags
+} from "./filterTags.js";
+import {
+  createPhotographerHeaderProfil,
+  createPhotographerMediasList
+} from "./photographerProfil.js";
+import { createLikesCounterDomElements } from "./likes.js";
 
 /**
  * Fetch photographers data
@@ -10,7 +17,9 @@ const fetchData = async () => {
     const response = await fetch("./data/FishEyeData.json");
     const data = await response.json();
     if (window.location.pathname.includes("photographer.html")) {
-      createPhotographerProfilPage(data);
+      createPhotographerHeaderProfil(data);
+      createPhotographerMediasList(data);
+      createLikesCounterDomElements(data);
     } else {
       createPhotographersMainList(data);
       createFilterTagsNavList(data);
