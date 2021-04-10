@@ -5,7 +5,7 @@ import { MediasFactory } from "./MediasFactory.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 
-const createPhotographerHeaderProfil = (data) => {
+const createProfileHeader = (data) => {
   let photographerHeader = "";
   data.photographers.forEach((photographer) => {
     if (photographer.id === Number(urlParams.get("id"))) {
@@ -18,7 +18,7 @@ const createPhotographerHeaderProfil = (data) => {
         photographer.tags,
         photographer.tagline,
         photographer.price
-      ).createProfilHeaderDomElements());
+      ).createProfileHeaderDomElements());
     }
   });
   return photographerHeader;
@@ -26,7 +26,7 @@ const createPhotographerHeaderProfil = (data) => {
 
 const mediaFactory = new MediasFactory();
 
-const createPhotographerMediasList = (data) => {
+const createProfileMediasList = (data) => {
   let mediasList = [];
 
   data.media.forEach((media) => {
@@ -47,5 +47,5 @@ const createPhotographerMediasList = (data) => {
   });
 };
 
-export { createPhotographerHeaderProfil };
-export { createPhotographerMediasList };
+export { createProfileHeader };
+export { createProfileMediasList };

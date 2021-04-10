@@ -49,7 +49,7 @@ export class Photographer {
     listElt.appendChild(cardElt);
   }
 
-  createProfilHeaderDomElements () {
+  createProfileHeaderDomElements () {
     const headerElt = document.querySelector(".profil-photographer-header");
     const imageElt = createElementFactory("img", { src: `./assets/medias/${this.portrait}`, alt: " " });
     const nameElt = createElementFactory("h1", {}, `${this.name}`);
@@ -58,9 +58,10 @@ export class Photographer {
     const tagsElt = createElementFactory("ul", { class: "tags-list" });
     const btnElt = createElementFactory("button", {
       type: "button",
-      class: "btn",
+      class: "btn btn-contact",
       title: "Contact me",
-      "aria-haspopup": "dialog"
+      "aria-haspopup": "dialog",
+      "aria-controls": "dialog"
     }, "Contactez-moi");
 
     this.tags.forEach(tag => {
