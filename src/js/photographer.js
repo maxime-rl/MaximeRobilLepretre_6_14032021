@@ -51,7 +51,7 @@ export class Photographer {
 
   createProfileHeaderDomElements () {
     const headerElt = document.querySelector(".profil-photographer-header");
-    const imageElt = createElementFactory("img", { src: `./assets/medias/${this.portrait}`, alt: " " });
+    const imageElt = createElementFactory("img", { src: `./assets/medias/${this.portrait}`, alt: `${this.name}` });
     const nameElt = createElementFactory("h1", {}, `${this.name}`);
     const locationElt = createElementFactory("p", { class: "photographer__location" }, (`${this.city}, ${this.country}`));
     const taglineElt = createElementFactory("p", { class: "photographer__tagline" }, `${this.tagline}`);
@@ -60,7 +60,7 @@ export class Photographer {
       type: "button",
       class: "btn btn-contact",
       title: "Contact me",
-      "aria-haspopup": "dialog",
+      "aria-haspopup": "form-dialog",
       "aria-controls": "dialog"
     }, "Contactez-moi");
 

@@ -13,7 +13,7 @@ const keyCodes = {
 };
 
 const handleModals = () => {
-  const triggers = document.querySelectorAll('[aria-haspopup="dialog"]');
+  const formTriggers = document.querySelectorAll('[aria-haspopup="form-dialog"]');
 
   const open = function (dialog) {
     const focusableElts = dialog.querySelectorAll(focusableEltsArr);
@@ -68,9 +68,10 @@ const handleModals = () => {
     trigger.focus();
   };
 
-  triggers.forEach((trigger) => {
+  formTriggers.forEach((trigger) => {
     const dialog = document.getElementById(trigger.getAttribute("aria-controls"));
     const dismissTriggers = dialog.querySelectorAll("[data-dismiss]");
+    console.log(dismissTriggers);
 
     // open dialog
     trigger.addEventListener("click", (e) => {

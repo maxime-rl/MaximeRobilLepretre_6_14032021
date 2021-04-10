@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Profil photographe">
   <title>FishEye - page photographer</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -44,13 +45,13 @@
             <div>Contactez-moi</div>
             <div class="form-photographer-name"></div>
           </h1>
-          <button type="button" class="btn-close" data-dismiss="dialog" aria-label="Close" title="Close Contact form">
+          <button type="button" class="btn-close" data-dismiss="dialog" aria-label="Close" title="Close contact form">
             <img src="./assets/icons/close-form.svg" aria-hidden="true">
           </button>
         </header>
         <label for="first-name">Prénom</label>
         <input type="text" name="first-name" id="first-name" aria-labelledby="first-name" aria-required=true>
-        <label for="last-name">Prénom</label>
+        <label for="last-name">Nom</label>
         <input type="text" name="last-name" id="last-name" aria-labelledby="last-name" aria-required=true>
         <label for="email">Email</label>
         <input type="email" name="email" id="email" aria-labelledby="email" aria-required=true>
@@ -63,20 +64,22 @@
   <!-- LIGHTBOX MEDIAS -->
   <div 
     role="dialog"
+    id="lightbox-dialog"
+    class ="lightbox-dialog"
     aria-modal="true"
     aria-hidden="true"
     tabindex="-1">
-    <div role="document">
-      <button type="button" id="btn-close-medias" data-dismiss="dialog-medias" aria-label="Close dialog">
-        <img src="./assets/icons/close-lightbox.svg" alt="Close dialog" aria-hidden="true">
+    <div role="document" class="lightbox-modal-content">
+      <button type="button" class="btn-close" data-dismiss="dialog-medias" aria-label="Close" title="Close lightbox">
+        <img src="./assets/icons/close-lightbox.svg" aria-hidden="true">
       </button>
       <button type="button" role="link" aria-label="Previous image">
-        <img src="./assets/icons/arrow.svg" alt="Previous image" aria-hidden="true">
+        <img src="./assets/icons/arrow.svg" aria-hidden="true">
       </button>
       <!-- Récupération des images ou vidéos -->
       <div id="medias"></div>
       <button type="button" role="link" aria-label="Next image">
-        <img src="./assets/icons/arrow.svg" alt="Next image" aria-hidden="true">
+        <img src="./assets/icons/arrow.svg" aria-hidden="true">
       </button>
     </div>
   </div>

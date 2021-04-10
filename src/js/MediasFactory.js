@@ -39,6 +39,8 @@ export class Photo extends MediasFactory {
       src: `./assets/medias/${this.src}`,
       alt: `${this.alt}`,
       role: "button",
+      "aria-haspopup": "lightbox-dialog",
+      "aria-controls": "dialog",
       tabindex: "0",
       title: `${this.alt}, closeup view`
     });
@@ -81,6 +83,8 @@ export class Video extends MediasFactory {
       autoplay: "true",
       alt: `${this.alt}`,
       role: "button",
+      "aria-haspopup": "lightbox-dialog",
+      "aria-controls": "dialog",
       tabindex: "0",
       title: `${this.alt}, closeup view`
     });

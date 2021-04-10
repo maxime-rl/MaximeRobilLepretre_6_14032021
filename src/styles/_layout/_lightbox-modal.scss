@@ -1,0 +1,32 @@
+// lightbox dialog overlay
+.lightbox-dialog {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  padding: 1.5rem;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  background-color: $color-back-modal;
+  transition: all .3s ease-in-out;
+}
+
+// dialog box
+.lightbox-modal-content {
+  display: flex;
+  margin: auto;
+  padding: 1.5rem;
+  width: 100%;
+  background-color: $color-body;
+  border-radius: .2rem;
+}
+
+// hidden dialog
+.lightbox-dialog[aria-hidden="true"] {
+  visibility: hidden;
+  opacity: 0;
+  transition: all .3s ease-in-out;
+}

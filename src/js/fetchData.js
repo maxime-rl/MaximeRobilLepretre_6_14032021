@@ -9,6 +9,7 @@ import {
 } from "./photographerProfil.js";
 import { createLikesCounterDomElements } from "./likes.js";
 import { handleModals } from "./handleModals.js";
+import { photographerName } from "./form.js";
 
 /**
  * Fetch photographers data
@@ -22,6 +23,7 @@ const fetchData = async () => {
       createProfileMediasList(data);
       createLikesCounterDomElements(data);
       handleModals();
+      photographerName(data);
     } else {
       createPhotographersMainList(data);
       createFilterTagsNavList(data);
