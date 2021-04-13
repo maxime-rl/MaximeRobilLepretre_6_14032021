@@ -5,7 +5,8 @@ import {
 } from "./filterTags.js";
 import {
   createProfileHeader,
-  createProfileMediasList
+  createProfileMediasList,
+  displaySlider
 } from "./photographerProfil.js";
 import { createLikesCounterDomElements } from "./likes.js";
 import { handleModals } from "./handleModals.js";
@@ -24,6 +25,7 @@ const fetchData = async () => {
       createLikesCounterDomElements(data);
       handleModals();
       photographerName(data);
+      displaySlider();
     } else {
       createPhotographersMainList(data);
       createFilterTagsNavList(data);

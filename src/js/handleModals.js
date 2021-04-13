@@ -20,6 +20,7 @@ const handleModals = () => {
     const firstFocusableElt = focusableElts[0];
     const lastFocusableElt = focusableElts[focusableElts.length - 1];
 
+    document.body.style.overflow = "hidden";
     dialog.setAttribute("aria-hidden", false);
     profileHeader.setAttribute("aria-hidden", true);
     profileContent.setAttribute("aria-hidden", true);
@@ -60,6 +61,7 @@ const handleModals = () => {
   };
 
   const close = function (dialog, trigger) {
+    document.body.style.overflow = "auto";
     dialog.setAttribute("aria-hidden", true);
     profileHeader.setAttribute("aria-hidden", false);
     profileContent.setAttribute("aria-hidden", false);
@@ -71,7 +73,6 @@ const handleModals = () => {
   formTriggers.forEach((trigger) => {
     const dialog = document.getElementById(trigger.getAttribute("aria-controls"));
     const dismissTriggers = dialog.querySelectorAll("[data-dismiss]");
-    console.log(dismissTriggers);
 
     // open dialog
     trigger.addEventListener("click", (e) => {

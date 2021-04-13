@@ -70,17 +70,19 @@
     aria-hidden="true"
     tabindex="-1">
     <div role="document" class="lightbox-modal-content">
-      <button type="button" class="btn-close" data-dismiss="dialog-medias" aria-label="Close" title="Close lightbox">
+      <button type="button" class="btn-close" data-dismiss="lightbox-dialog" aria-label="Close" title="Close lightbox">
         <img src="./assets/icons/close-lightbox.svg" aria-hidden="true">
       </button>
-      <button type="button" role="link" aria-label="Previous image">
-        <img src="./assets/icons/arrow.svg" aria-hidden="true">
-      </button>
       <!-- Récupération des images ou vidéos -->
-      <div id="medias"></div>
-      <button type="button" role="link" aria-label="Next image">
-        <img src="./assets/icons/arrow.svg" aria-hidden="true">
-      </button>
+      <div id="slider">
+        <button type="button" id="btn-prev" role="link" aria-label="Previous image">
+          <img src="./assets/icons/arrow.svg" aria-hidden="true">
+        </button>
+        <div id="media-slide"></div>
+        <button type="button" id="btn-next" role="link" aria-label="Next image">
+          <img src="./assets/icons/arrow.svg" aria-hidden="true">
+        </button>
+      </div>
     </div>
   </div>
 </body>
