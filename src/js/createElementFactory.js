@@ -6,22 +6,22 @@
  * @returns
  */
 const createElementFactory = (type, attributes, ...children) => {
-  const el = document.createElement(type);
+  const elt = document.createElement(type);
   let key = "";
 
   for (key in attributes) {
-    el.setAttribute(key, attributes[key]);
+    elt.setAttribute(key, attributes[key]);
   }
 
   children.forEach(child => {
     if (typeof child === "string") {
-      el.appendChild(document.createTextNode(child));
+      elt.appendChild(document.createTextNode(child));
     } else {
-      el.appendChild(child);
+      elt.appendChild(child);
     }
   });
 
-  return el;
+  return elt;
 };
 
 export { createElementFactory };

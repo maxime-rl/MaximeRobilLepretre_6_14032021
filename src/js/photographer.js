@@ -49,18 +49,19 @@ export class Photographer {
     listElt.appendChild(cardElt);
   }
 
-  createProfilHeaderDomElements () {
+  createProfileHeaderDomElements () {
     const headerElt = document.querySelector(".profil-photographer-header");
-    const imageElt = createElementFactory("img", { src: `./assets/medias/${this.portrait}`, alt: " " });
+    const imageElt = createElementFactory("img", { src: `./assets/medias/${this.portrait}`, alt: `${this.name}` });
     const nameElt = createElementFactory("h1", {}, `${this.name}`);
     const locationElt = createElementFactory("p", { class: "photographer__location" }, (`${this.city}, ${this.country}`));
     const taglineElt = createElementFactory("p", { class: "photographer__tagline" }, `${this.tagline}`);
     const tagsElt = createElementFactory("ul", { class: "tags-list" });
     const btnElt = createElementFactory("button", {
       type: "button",
-      class: "btn",
+      class: "btn btn-contact",
       title: "Contact me",
-      "aria-haspopup": "dialog"
+      "aria-haspopup": "form-dialog",
+      "aria-controls": "dialog"
     }, "Contactez-moi");
 
     this.tags.forEach(tag => {

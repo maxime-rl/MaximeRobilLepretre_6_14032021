@@ -5,7 +5,7 @@ import { MediasFactory } from "./MediasFactory.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 
-const createPhotographerHeaderProfil = (data) => {
+const createProfileHeader = (data) => {
   let photographerHeader = "";
   data.photographers.forEach((photographer) => {
     if (photographer.id === Number(urlParams.get("id"))) {
@@ -18,7 +18,7 @@ const createPhotographerHeaderProfil = (data) => {
         photographer.tags,
         photographer.tagline,
         photographer.price
-      ).createProfilHeaderDomElements());
+      ).createProfileHeaderDomElements());
     }
   });
   return photographerHeader;
@@ -26,7 +26,7 @@ const createPhotographerHeaderProfil = (data) => {
 
 const mediaFactory = new MediasFactory();
 
-const createPhotographerMediasList = (data) => {
+const createProfileMediasList = (data) => {
   let mediasList = [];
 
   data.media.forEach((media) => {
@@ -47,5 +47,56 @@ const createPhotographerMediasList = (data) => {
   });
 };
 
-export { createPhotographerHeaderProfil };
-export { createPhotographerMediasList };
+// TEST display slider modal with aria-haspopup
+const displaySlider = () => {
+  const mediaTriggers = document.querySelectorAll('[aria-haspopup="lightbox-dialog"]');
+  const profileHeader = document.querySelector(".page-photographer-header");
+  const profileContent = document.querySelector(".photographer-content");
+
+  const open = function (dialog) {
+    document.body.style.overflow = "hidden";
+    dialog.setAttribute("aria-hidden", false);
+    profileHeader.setAttribute("aria-hidden", true);
+    profileContent.setAttribute("aria-hidden", true);
+  };
+
+  const close = function (dialog) {
+    document.body.style.overflow = "auto";
+    dialog.setAttribute("aria-hidden", true);
+    profileHeader.setAttribute("aria-hidden", false);
+    profileContent.setAttribute("aria-hidden", false);
+  };
+
+  mediaTriggers.forEach((trigger) => {
+    const dialog = document.getElementById(trigger.getAttribute("aria-controls"));
+    const dismissTriggers = dialog.querySelectorAll('[data-dismiss="lightbox-dialog"]');
+
+    // open dialog
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      open(dialog);
+    });
+
+    // close dialog
+    dismissTriggers.forEach((dismissTrigger) => {
+      const dismissDialog = document.getElementById(dismissTrigger.dataset.dismiss);
+
+      dismissTrigger.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        close(dismissDialog);
+      });
+    });
+
+    window.addEventListener("click", (event) => {
+      if (event.target === dialog) {
+        close(dialog);
+      }
+    });
+  });
+};
+
+export { createProfileHeader };
+export { createProfileMediasList };
+export { displaySlider };

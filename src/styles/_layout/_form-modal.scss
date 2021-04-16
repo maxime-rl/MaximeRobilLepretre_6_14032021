@@ -1,0 +1,126 @@
+// form dialog overlay
+.form-dialog {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  padding: 1.5rem;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  background-color: $color-back-modal;
+  transition: all .3s ease-in-out;
+}
+
+// dialog box
+.form-modal-content {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 1.5rem;
+  width: 100%;
+  background-color: $color-tertiary;
+  border-radius: .2rem;
+
+  @include breakpoint(md) {
+    max-width: 35rem;
+  }
+
+  @include breakpoint(lg) {
+    max-width: 45rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  
+    header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+
+      @include breakpoint(lg) {
+        margin-bottom: 4.5rem;
+      }
+  
+      h1 {
+        margin: 0;
+  
+        @include breakpoint(lg) {
+          font-size: 4rem;
+        }
+      }
+  
+      .btn-close {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 3rem;
+        max-height: 3rem;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+          border-radius: .2rem;
+          background-color: $color-primary;
+        }
+      }
+    }
+  
+    label {
+      margin-bottom: .5rem;
+      color: $color-text-secondary;
+  
+      @include breakpoint(lg) {
+        margin-bottom: 1rem;
+        font-size: 2rem;
+      }
+    }
+  
+    input {
+      height: 3rem;
+      margin-bottom: 1.5rem;
+      border: none;
+      border-radius: .2rem;
+
+      @include breakpoint(lg) {
+        margin-bottom: 2rem;
+      }
+    }
+  
+    textarea {
+      border: none;
+      border-radius: .2rem;
+    }
+  
+    .btn-submit {
+      padding: 0 1.5rem;
+      border-radius: .2rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+
+      &:hover,
+      &:focus {
+        border: 2px solid $color-text-primary;
+        color: $color-text-primary;
+        background-color: $color-tertiary;
+      }
+  
+      @include breakpoint(lg) {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+// hidden dialog
+.form-dialog[aria-hidden="true"] {
+  visibility: hidden;
+  opacity: 0;
+  transition: all .3s ease-in-out;
+}
+
