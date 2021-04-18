@@ -12,7 +12,7 @@ const keyCodes = {
   escape: 27
 };
 
-const handleModals = () => {
+const handleModalForm = () => {
   const formTriggers = document.querySelectorAll('[aria-haspopup="form-dialog"]');
 
   const open = function (dialog) {
@@ -114,4 +114,4 @@ const handleModals = () => {
   });
 };
 
-export { handleModals };
+export { handleModalForm };

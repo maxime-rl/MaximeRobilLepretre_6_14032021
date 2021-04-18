@@ -5,15 +5,15 @@ import {
 } from "./filterTags.js";
 import {
   createProfileHeader,
-  createProfileMediasList,
-  displaySlider
+  createProfileMediasList
 } from "./photographerProfil.js";
 import { createLikesCounterDomElements } from "./likes.js";
-import { handleModals } from "./handleModals.js";
+import { handleModalForm } from "./handleModalForm.js";
 import { photographerName } from "./form.js";
+import { Lightbox } from "./Lightbox";
 
 /**
- * Fetch photographers data
+ * Fetch data
  */
 const fetchData = async () => {
   try {
@@ -23,9 +23,9 @@ const fetchData = async () => {
       createProfileHeader(data);
       createProfileMediasList(data);
       createLikesCounterDomElements(data);
-      handleModals();
+      handleModalForm();
       photographerName(data);
-      displaySlider();
+      Lightbox.init();
     } else {
       createPhotographersMainList(data);
       createFilterTagsNavList(data);
