@@ -42,7 +42,7 @@ export class Lightbox {
     container.innerHTML = "";
     container.appendChild(loaderElt);
 
-    const currentUrl = `${url}`.split(".").pop();
+    const currentUrl = url.split(".").pop();
 
     if (currentUrl === "jpg") {
       container.removeChild(loaderElt);
