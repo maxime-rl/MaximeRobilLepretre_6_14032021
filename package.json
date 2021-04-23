@@ -15,7 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/maxime-rl/webpack-starter.git"
   },
-  "author": "maxim-rl",
+  "author": "maxime-rl",
   "license": "MIT License",
   "bugs": {
     "url": "https://github.com/maxime-rl/webpack-starter/issues"
