@@ -22,6 +22,7 @@ const handleModalForm = () => {
 
     document.body.style.overflow = "hidden";
     dialog.setAttribute("aria-hidden", false);
+    dialog.setAttribute("aria-modal", true);
     profileHeader.setAttribute("aria-hidden", true);
     profileContent.setAttribute("aria-hidden", true);
 
@@ -63,6 +64,7 @@ const handleModalForm = () => {
   const close = function (dialog, trigger) {
     document.body.style.overflow = "auto";
     dialog.setAttribute("aria-hidden", true);
+    dialog.setAttribute("aria-modal", false);
     profileHeader.setAttribute("aria-hidden", false);
     profileContent.setAttribute("aria-hidden", false);
 

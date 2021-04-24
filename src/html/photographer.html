@@ -21,12 +21,12 @@
   <main class="photographer-content" aria-hidden="false">
     <section>
       <header class="profil-photographer-header"></header>
-      <ul role="listbox" tabindex="0" id="listbox" aria-activedescendant="listbox-1">
-        <li role="option" id="listbox-1" tabindex="-1">Popularité</li>
-        <li role="option" id="listbox-2" tabindex="-1">Date</li>
-        <li role="option" id="listbox-3" tabindex="-1">Titre</li>
-      </ul>
-      <!-- create list media elements in JS header photographer -->
+      <label class="sort-label">Trier par</label>
+      <select data-custom>
+        <option>Popularité</option>
+        <option>Date</option>
+        <option>Titre</option>
+      </select>
       <ul class="medias-list"></ul>
     </section>
   </main>
@@ -61,28 +61,5 @@
       </form>
     </div>
   </div>
-  <!-- LIGHTBOX MEDIAS -->
-  <!-- <div 
-    role="dialog"
-    id="lightbox-dialog"
-    class ="lightbox-dialog"
-    aria-modal="true"
-    aria-hidden="true"
-    tabindex="-1">
-    <div role="document" class="lightbox-modal-content">
-      <button type="button" class="btn-close" data-dismiss="lightbox-dialog" aria-label="Close" title="Close lightbox">
-        <img src="./assets/icons/close-lightbox.svg" aria-hidden="true">
-      </button>
-      <div id="slider">
-        <button type="button" id="btn-prev" class="btn-prev" role="link" aria-label="Previous image">
-          <img src="./assets/icons/arrow.svg" aria-hidden="true">
-        </button>
-        <div id="media-slide"></div>
-        <button type="button" id="btn-next" class="btn-next" role="link" aria-label="Next image">
-          <img src="./assets/icons/arrow.svg" aria-hidden="true">
-        </button>
-      </div>
-    </div>
-  </div> -->
 </body>
 </html>

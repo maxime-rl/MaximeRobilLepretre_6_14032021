@@ -39,13 +39,9 @@ export class Photo extends MediasFactory {
       src: `./assets/medias/${this.src}`,
       class: "media",
       alt: `${this.alt}`,
-      role: "button",
-      "aria-haspopup": "lightbox-dialog",
-      "aria-controls": "lightbox-dialog",
-      tabindex: "0",
       title: `${this.alt}, closeup view`
     });
-    const linkElt = createElementFactory("a", { href: `./assets/medias/${this.src}` });
+    const linkElt = createElementFactory("a", { href: `./assets/medias/${this.src}`, tabindex: "0", "aria-haspopup": "lightbox-dialog", "aria-controls": "lightbox-dialog" });
 
     const figcaptionElt = document.createElement("figcaption");
     const titleElt = createElementFactory("h2", {}, `${this.alt}`);
@@ -81,7 +77,7 @@ export class Video extends MediasFactory {
     const cardElt = createElementFactory("li", { class: "media-card" });
     const figureElt = document.createElement("figure");
 
-    const linkElt = createElementFactory("a", { href: `./assets/medias/${this.src}` });
+    const linkElt = createElementFactory("a", { href: `./assets/medias/${this.src}`, tabindex: "0", "aria-haspopup": "lightbox-dialog", "aria-controls": "lightbox-dialog" });
     const videoMedia = createElementFactory("video", {
       src: `./assets/medias/${this.src}`,
       preload: "true",
@@ -89,10 +85,6 @@ export class Video extends MediasFactory {
       autoplay: "true",
       alt: `${this.alt}`,
       class: "media",
-      role: "button",
-      "aria-haspopup": "lightbox-dialog",
-      "aria-controls": "lightbox-dialog",
-      tabindex: "0",
       title: `${this.alt}, closeup view`
     });
 

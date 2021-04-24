@@ -5,7 +5,8 @@ import {
 } from "./filterTags.js";
 import {
   createProfileHeader,
-  createProfileMediasList
+  createProfileMediasList,
+  createCustomSortSelect
 } from "./photographerProfil.js";
 import { createLikesCounterDomElements } from "./likes.js";
 import { handleModalForm } from "./handleModalForm.js";
@@ -22,6 +23,7 @@ const fetchData = async () => {
     if (window.location.pathname.includes("photographer.html")) {
       createProfileHeader(data);
       createProfileMediasList(data);
+      createCustomSortSelect();
       createLikesCounterDomElements(data);
       handleModalForm();
       photographerName(data);

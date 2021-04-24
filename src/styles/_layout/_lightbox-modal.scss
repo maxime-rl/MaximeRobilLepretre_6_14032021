@@ -18,16 +18,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   padding: 1.5rem;
   width: 100%;
   background-color: $color-body;
   border-radius: .2rem;
+}
+
+.lightbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 
   .btn-close {
     position: absolute;
-    right: 15px;
-    top: 15px;
+    right: 0;
+    top: 10px;
   }
 
   .btn-next,
@@ -69,14 +75,6 @@
   align-items: center;
   padding: 15px;
   width: 100%;
-
-  @include breakpoint(xl) {
-    max-width: 80%;
-  }
-
-  @include breakpoint(xxl) {
-    max-width: 65%;
-  }
 
   img,
   video {
