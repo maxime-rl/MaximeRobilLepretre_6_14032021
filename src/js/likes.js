@@ -6,7 +6,7 @@ const createLikesCounterDomElements = (data) => {
   const mainElt = document.querySelector(".photographer-content");
   const asideElt = createElementFactory("aside", { class: "likes-counter" });
 
-  const counterElt = createElementFactory("p", { class: "all-likes" }, "test");
+  const counterElt = createElementFactory("p", { class: "all-likes" });
   allLikesPhotographer(counterElt, data);
 
   const pricingElt = createElementFactory("p", { class: "photographer-pricing" });
@@ -20,13 +20,36 @@ const createLikesCounterDomElements = (data) => {
   mainElt.appendChild(asideElt);
 };
 
+let allLikes = 0;
+
 const allLikesPhotographer = (elt, data) => {
-  let allLikes = 0;
   data.media.forEach((media) => {
     if (media.photographerId === Number(urlParams.get("id"))) {
       allLikes += media.likes;
       elt.textContent = `${allLikes} `;
     }
+  });
+};
+
+const handleLikes = () => {
+  const btnLikes = document.querySelectorAll(".media-likes");
+  const allLikesDomElt = document.querySelector(".all-likes");
+  const heartElt = document.querySelector(".media-likes > i");
+  let addLike = true;
+  btnLikes.forEach((btnLike) => {
+    btnLike.addEventListener("click", () => {
+      if (addLike) {
+        allLikesDomElt.textContent = allLikes += 1;
+        heartElt.classList.remove("far");
+        heartElt.classList.add("fas");
+        addLike = false;
+      } else if (!addLike) {
+        allLikesDomElt.textContent = allLikes -= 1;
+        heartElt.classList.remove("fas");
+        heartElt.classList.add("far");
+        addLike = true;
+      }
+    });
   });
 };
 
@@ -39,3 +62,4 @@ const pricingPhotographer = (elt, data) => {
 };
 
 export { createLikesCounterDomElements };
+export { handleLikes };

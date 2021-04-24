@@ -34,7 +34,6 @@ export class Photo extends MediasFactory {
     const cardElt = createElementFactory("li", { class: "media-card" });
     const figureElt = document.createElement("figure");
 
-    const pictureElt = createElementFactory("picture", { class: "media-card__img" });
     const photoMedia = createElementFactory("img", {
       src: `./assets/medias/${this.src}`,
       class: "media",
@@ -46,7 +45,7 @@ export class Photo extends MediasFactory {
     const figcaptionElt = document.createElement("figcaption");
     const titleElt = createElementFactory("h2", {}, `${this.alt}`);
     const priceElt = createElementFactory("p", { class: "media-card__price" }, `${this.price}€`);
-    const btnElt = createElementFactory("button", { tabindex: "0" }, `${this.likes}`);
+    const btnElt = createElementFactory("button", { class: "media-likes", tabindex: "0" }, `${this.likes}`);
     const iconLikeElt = createElementFactory("i", {
       class: "far fa-heart",
       "aria-label": "likes"
@@ -60,9 +59,7 @@ export class Photo extends MediasFactory {
 
     linkElt.appendChild(photoMedia);
 
-    pictureElt.appendChild(linkElt);
-
-    figureElt.appendChild(pictureElt);
+    figureElt.appendChild(linkElt);
     figureElt.appendChild(figcaptionElt);
 
     cardElt.appendChild(figureElt);
@@ -81,8 +78,6 @@ export class Video extends MediasFactory {
     const videoMedia = createElementFactory("video", {
       src: `./assets/medias/${this.src}`,
       preload: "true",
-      loop: "true",
-      autoplay: "true",
       alt: `${this.alt}`,
       class: "media",
       title: `${this.alt}, closeup view`
@@ -91,7 +86,7 @@ export class Video extends MediasFactory {
     const figcaptionElt = document.createElement("figcaption");
     const titleElt = createElementFactory("h2", {}, `${this.alt}`);
     const priceElt = createElementFactory("p", { class: "media-card__price" }, `${this.price}€`);
-    const btnElt = createElementFactory("button", { tabindex: "0" }, `${this.likes}`);
+    const btnElt = createElementFactory("button", { class: "media-likes", tabindex: "0" }, `${this.likes}`);
     const iconLikeElt = createElementFactory("i", {
       class: "far fa-heart",
       "aria-label": "likes"
