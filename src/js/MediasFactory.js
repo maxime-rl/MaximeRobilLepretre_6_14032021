@@ -26,38 +26,36 @@ export class MediasFactory {
       return video;
     }
   }
-}
 
-export class Photo extends MediasFactory {
-  createMediaDomElement () {
+  createMediaDomElts = (MediaElt) => {
     const listElt = document.querySelector(".medias-list");
     const cardElt = createElementFactory("li", { class: "media-card" });
     const figureElt = document.createElement("figure");
-
-    const photoMedia = createElementFactory("img", {
-      src: `./assets/medias/${this.src}`,
-      class: "media",
-      alt: `${this.alt}`,
-      title: `${this.alt}, closeup view`
+    const linkElt = createElementFactory("a", {
+      href: `./assets/medias/${this.src}`,
+      tabindex: "0",
+      "aria-haspopup": "lightbox-dialog",
+      "aria-controls": "lightbox-dialog"
     });
-    const linkElt = createElementFactory("a", { href: `./assets/medias/${this.src}`, tabindex: "0", "aria-haspopup": "lightbox-dialog", "aria-controls": "lightbox-dialog" });
-
     const figcaptionElt = document.createElement("figcaption");
     const titleElt = createElementFactory("h2", {}, `${this.alt}`);
     const priceElt = createElementFactory("p", { class: "media-card__price" }, `${this.price}€`);
-    const btnElt = createElementFactory("button", { class: "media-likes", tabindex: "0" }, `${this.likes}`);
+    const likesContainerElt = createElementFactory("div", { class: "media-card__likes-container" });
+    const likesElt = createElementFactory("p", { class: "media-likes" }, `${this.likes}`);
     const iconLikeElt = createElementFactory("i", {
       class: "far fa-heart",
+      tabindex: "0",
       "aria-label": "likes"
     });
 
-    btnElt.appendChild(iconLikeElt);
+    likesContainerElt.appendChild(likesElt);
+    likesContainerElt.appendChild(iconLikeElt);
 
     figcaptionElt.appendChild(titleElt);
     figcaptionElt.appendChild(priceElt);
-    figcaptionElt.appendChild(btnElt);
+    figcaptionElt.appendChild(likesContainerElt);
 
-    linkElt.appendChild(photoMedia);
+    linkElt.appendChild(MediaElt);
 
     figureElt.appendChild(linkElt);
     figureElt.appendChild(figcaptionElt);
@@ -68,13 +66,20 @@ export class Photo extends MediasFactory {
   };
 }
 
-export class Video extends MediasFactory {
-  createMediaDomElement () {
-    const listElt = document.querySelector(".medias-list");
-    const cardElt = createElementFactory("li", { class: "media-card" });
-    const figureElt = document.createElement("figure");
+export class Photo extends MediasFactory {
+  createDomElt () {
+    const photoMedia = createElementFactory("img", {
+      src: `./assets/medias/${this.src}`,
+      class: "media",
+      alt: `${this.alt}`,
+      title: `${this.alt}, closeup view`
+    });
+    this.createMediaDomElts(photoMedia);
+  };
+}
 
-    const linkElt = createElementFactory("a", { href: `./assets/medias/${this.src}`, tabindex: "0", "aria-haspopup": "lightbox-dialog", "aria-controls": "lightbox-dialog" });
+export class Video extends MediasFactory {
+  createDomElt () {
     const videoMedia = createElementFactory("video", {
       src: `./assets/medias/${this.src}`,
       preload: "true",
@@ -82,29 +87,6 @@ export class Video extends MediasFactory {
       class: "media",
       title: `${this.alt}, closeup view`
     });
-
-    const figcaptionElt = document.createElement("figcaption");
-    const titleElt = createElementFactory("h2", {}, `${this.alt}`);
-    const priceElt = createElementFactory("p", { class: "media-card__price" }, `${this.price}€`);
-    const btnElt = createElementFactory("button", { class: "media-likes", tabindex: "0" }, `${this.likes}`);
-    const iconLikeElt = createElementFactory("i", {
-      class: "far fa-heart",
-      "aria-label": "likes"
-    });
-
-    btnElt.appendChild(iconLikeElt);
-
-    figcaptionElt.appendChild(titleElt);
-    figcaptionElt.appendChild(priceElt);
-    figcaptionElt.appendChild(btnElt);
-
-    linkElt.appendChild(videoMedia);
-
-    figureElt.appendChild(linkElt);
-    figureElt.appendChild(figcaptionElt);
-
-    cardElt.appendChild(figureElt);
-
-    listElt.appendChild(cardElt);
+    this.createMediaDomElts(videoMedia);
   };
 }

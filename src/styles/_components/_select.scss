@@ -51,8 +51,6 @@
   width: 100%;
   font-size: 1.8rem;
   border-top: none;
-  // border-radius: $radius-btn-img;
-  // border: 1px solid $color-primary;
 }
 
 .custom-select-options.show {
@@ -68,6 +66,10 @@
   &:hover {
     color: black;
     background-color: $color-tertiary;
+  }
+
+  &:last-child {
+    border-radius: 0 0 $radius-btn-img $radius-btn-img;
   }
 }
 

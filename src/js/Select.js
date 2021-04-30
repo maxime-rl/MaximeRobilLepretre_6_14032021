@@ -1,16 +1,13 @@
-/**
- *
- */
 export class Select {
-  constructor (element) {
-    this.element = element;
-    this.options = getFormattedOptions(element.querySelectorAll("option"));
-    this.customElement = document.createElement("div");
-    this.labelElement = document.createElement("span");
-    this.optionsCustomElement = document.createElement("ul");
+  constructor (elt) {
+    this.elt = elt;
+    this.options = getFormattedOptions(elt.querySelectorAll("option"));
+    this.customElt = document.createElement("div");
+    this.labelElt = document.createElement("span");
+    this.optionsCustomElt = document.createElement("ul");
     setupCustomElement(this);
-    element.style.display = "none";
-    element.after(this.customElement);
+    elt.style.display = "none";
+    elt.after(this.customElt);
   }
 
   get selectedOption () {
@@ -27,61 +24,61 @@ export class Select {
     });
     const prevSelectedOption = this.selectedOption;
     prevSelectedOption.selected = false;
-    prevSelectedOption.element.selected = false;
+    prevSelectedOption.elt.selected = false;
 
     newSelectedOption.selected = true;
-    newSelectedOption.element.selected = true;
+    newSelectedOption.elt.selected = true;
 
-    this.labelElement.innerText = newSelectedOption.label;
-    this.optionsCustomElement
+    this.labelElt.innerText = newSelectedOption.label;
+    this.optionsCustomElt
       .querySelector(`[data-value="${prevSelectedOption.value}"]`)
       .classList.remove("selected");
-    this.optionsCustomElement
+    this.optionsCustomElt
       .querySelector(`[data-value="${newSelectedOption.value}"]`)
       .classList.add("selected");
   }
 }
 
 function setupCustomElement (select) {
-  select.customElement.classList.add("custom-select-container");
-  select.customElement.tabIndex = 0;
+  select.customElt.classList.add("custom-select-container");
+  select.customElt.tabIndex = 0;
 
-  select.labelElement.classList.add("custom-select-value");
-  select.labelElement.innerText = select.selectedOption.value;
-  select.customElement.append(select.labelElement);
+  select.labelElt.classList.add("custom-select-value");
+  select.labelElt.innerText = select.selectedOption.value;
+  select.customElt.append(select.labelElt);
 
-  select.optionsCustomElement.classList.add("custom-select-options");
+  select.optionsCustomElt.classList.add("custom-select-options");
 
   select.options.forEach(option => {
-    const optionElement = document.createElement("li");
-    optionElement.classList.add("custom-select-option");
-    optionElement.classList.toggle("selected", option.selected);
-    optionElement.innerText = option.label;
-    optionElement.dataset.value = option.value;
+    const optionElt = document.createElement("li");
+    optionElt.classList.add("custom-select-option");
+    optionElt.classList.toggle("selected", option.selected);
+    optionElt.innerText = option.label;
+    optionElt.dataset.value = option.value;
 
-    optionElement.addEventListener("click", () => {
+    optionElt.addEventListener("click", () => {
       select.selectValue(option.value);
-      select.optionsCustomElement.classList.remove("show");
+      select.optionsCustomElt.classList.remove("show");
     });
 
-    select.optionsCustomElement.append(optionElement);
+    select.optionsCustomElt.append(optionElt);
   });
 
-  select.customElement.append(select.optionsCustomElement);
+  select.customElt.append(select.optionsCustomElt);
 
-  select.labelElement.addEventListener("click", () => {
-    select.optionsCustomElement.classList.toggle("show");
+  select.labelElt.addEventListener("click", () => {
+    select.optionsCustomElt.classList.toggle("show");
   });
 
-  select.labelElement.addEventListener("blur", () => {
-    select.optionsCustomElement.classList.remove("show");
+  select.labelElt.addEventListener("blur", () => {
+    select.optionsCustomElt.classList.remove("show");
   });
 
-  select.customElement.addEventListener("keydown", e => {
+  select.customElt.addEventListener("keydown", e => {
     switch (e.code) {
       case "Enter":
       case "Space":
-        select.optionsCustomElement.classList.toggle("show");
+        select.optionsCustomElt.classList.toggle("show");
         break;
       case "ArrowUp":
         // eslint-disable-next-line no-case-declarations
@@ -98,19 +95,19 @@ function setupCustomElement (select) {
         }
         break;
       case "Escape":
-        select.optionsCustomElement.classList.remove("show");
+        select.optionsCustomElt.classList.remove("show");
         break;
     }
   });
 }
 
-function getFormattedOptions (optionElements) {
-  return [...optionElements].map(optionElement => {
+function getFormattedOptions (optionElts) {
+  return [...optionElts].map(optionElt => {
     return {
-      value: optionElement.value,
-      label: optionElement.label,
-      selected: optionElement.selected,
-      element: optionElement
+      value: optionElt.value,
+      label: optionElt.label,
+      selected: optionElt.selected,
+      elt: optionElt
     };
   });
 }

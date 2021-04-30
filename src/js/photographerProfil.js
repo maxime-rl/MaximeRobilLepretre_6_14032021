@@ -41,18 +41,18 @@ const createProfileMediasList = (data) => {
         media.date,
         media.price,
         media.alt
-      ).createMediaDomElement();
+      ).createDomElt();
       return mediasList;
     }
   });
 };
 
-const selectElements = document.querySelectorAll("[data-custom]");
+const selectElts = document.querySelectorAll("[data-custom]");
 let select = "";
 
 const createCustomSortSelect = () => {
-  selectElements.forEach(selectElement => {
-    select = new Select(selectElement);
+  selectElts.forEach(selectElt => {
+    select = new Select(selectElt);
     return select;
   });
 };

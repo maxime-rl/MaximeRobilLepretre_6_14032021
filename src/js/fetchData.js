@@ -8,7 +8,7 @@ import {
   createProfileMediasList,
   createCustomSortSelect
 } from "./photographerProfil.js";
-import { createLikesCounterDomElements, handleLikes } from "./likes.js";
+import { createLikesCounterDomElements, updateMediaLikes, updateAllLikes } from "./likes.js";
 import { handleModalForm } from "./handleModalForm.js";
 import { photographerName } from "./form.js";
 import { Lightbox } from "./Lightbox";
@@ -25,7 +25,8 @@ const fetchData = async () => {
       createProfileMediasList(data);
       createCustomSortSelect();
       createLikesCounterDomElements(data);
-      handleLikes();
+      updateMediaLikes();
+      updateAllLikes();
       handleModalForm();
       photographerName(data);
       Lightbox.init();
