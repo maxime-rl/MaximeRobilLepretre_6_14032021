@@ -42,7 +42,7 @@ export class Lightbox {
     container.innerHTML = "";
     container.appendChild(loaderElt);
 
-    const currentUrl = `${url}`.split(".").pop();
+    const currentUrl = url.split(".").pop();
 
     if (currentUrl === "jpg") {
       container.removeChild(loaderElt);
@@ -66,6 +66,14 @@ export class Lightbox {
   close (e) {
     e.preventDefault();
     this.elt.classList.add("fade-out");
+
+    const profileHeader = document.querySelector(".page-photographer-header");
+    const profileContent = document.querySelector(".photographer-content");
+    const lightboxDialog = document.querySelector(".lightbox-dialog");
+
+    lightboxDialog.setAttribute("aria-hidden", true);
+    profileHeader.setAttribute("aria-hidden", false);
+    profileContent.setAttribute("aria-hidden", false);
 
     window.setTimeout(() => {
       this.elt.parentElement.removeChild(this.elt);
@@ -105,8 +113,14 @@ export class Lightbox {
    * @returns {HTMLElement}
    */
   buildDOM () {
-    const dialogDomElt = createElementFactory("div", { role: "dialog", class: "lightbox-dialog" });
+    const dialogDomElt = createElementFactory("div", { role: "dialog", class: "lightbox-dialog", "aria-hidden": "false", "aria-modal": "true", tabindex: "-1" });
     const documentDomElt = createElementFactory("div", { role: "document", class: "lightbox-modal-content" });
+    const containerDomElt = createElementFactory("div", { class: "lightbox-container" });
+
+    const profileHeader = document.querySelector(".page-photographer-header");
+    const profileContent = document.querySelector(".photographer-content");
+    profileHeader.setAttribute("aria-hidden", true);
+    profileContent.setAttribute("aria-hidden", true);
 
     const btnCloseElt = createElementFactory("button", {
       type: "button",
@@ -132,11 +146,12 @@ export class Lightbox {
 
     const containerElt = createElementFactory("div", { class: "media-container" });
 
-    documentDomElt.appendChild(btnCloseElt);
-    documentDomElt.appendChild(btnPrevElt);
-    documentDomElt.appendChild(containerElt);
-    documentDomElt.appendChild(btnNextElt);
+    containerDomElt.appendChild(btnCloseElt);
+    containerDomElt.appendChild(btnPrevElt);
+    containerDomElt.appendChild(containerElt);
+    containerDomElt.appendChild(btnNextElt);
 
+    documentDomElt.appendChild(containerDomElt);
     dialogDomElt.appendChild(documentDomElt);
 
     dialogDomElt.querySelector(".btn-close").addEventListener("click", this.close.bind(this));

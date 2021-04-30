@@ -5,9 +5,10 @@ import {
 } from "./filterTags.js";
 import {
   createProfileHeader,
-  createProfileMediasList
+  createProfileMediasList,
+  createCustomSortSelect
 } from "./photographerProfil.js";
-import { createLikesCounterDomElements } from "./likes.js";
+import { createLikesCounterDomElements, handleLikes } from "./likes.js";
 import { handleModalForm } from "./handleModalForm.js";
 import { photographerName } from "./form.js";
 import { Lightbox } from "./Lightbox";
@@ -22,7 +23,9 @@ const fetchData = async () => {
     if (window.location.pathname.includes("photographer.html")) {
       createProfileHeader(data);
       createProfileMediasList(data);
+      createCustomSortSelect();
       createLikesCounterDomElements(data);
+      handleLikes();
       handleModalForm();
       photographerName(data);
       Lightbox.init();

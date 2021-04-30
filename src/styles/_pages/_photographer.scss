@@ -142,6 +142,21 @@
   }
 }
 
+.sort-label {
+  display: none;
+  padding: 20px 20px 50px 20px;
+  font-size: 1.8rem;
+  font-weight: 700;
+
+  @include breakpoint(xl) {
+    display: inline-block;
+  }
+
+  @include breakpoint(xxl) {
+    margin: 0 0 0 80px;
+  }
+}
+
 #listbox {
   max-width: 1440px;
   margin: 0 20px;

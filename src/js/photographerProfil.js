@@ -2,6 +2,7 @@ import "../styles/main.scss";
 
 import { Photographer } from "./Photographer.js";
 import { MediasFactory } from "./MediasFactory.js";
+import { Select } from "./Select.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 let mediasList = [];
@@ -46,5 +47,16 @@ const createProfileMediasList = (data) => {
   });
 };
 
+const selectElements = document.querySelectorAll("[data-custom]");
+let select = "";
+
+const createCustomSortSelect = () => {
+  selectElements.forEach(selectElement => {
+    select = new Select(selectElement);
+    return select;
+  });
+};
+
 export { createProfileHeader };
 export { createProfileMediasList };
+export { createCustomSortSelect };
