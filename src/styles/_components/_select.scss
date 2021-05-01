@@ -58,6 +58,7 @@
 }
 
 .custom-select-option {
+  position: relative;
   padding: 1rem;
   color: white;
   background-color: $color-primary;
@@ -68,8 +69,23 @@
     background-color: $color-tertiary;
   }
 
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 0 11.5px;
+    height: 1px;
+    width: 89%;
+    border-bottom:1px solid $color-body;
+  }
+
   &:last-child {
     border-radius: 0 0 $radius-btn-img $radius-btn-img;
+
+    &:before {
+      border-bottom: none;
+    }
   }
 }
 

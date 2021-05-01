@@ -6,15 +6,15 @@ const createLikesCounterDomElements = (data) => {
   const mainElt = document.querySelector(".photographer-content");
   const asideElt = document.createElement("aside");
   const allLikesContainer = createElementFactory("div", { class: "all-likes-container" });
-
   const counterElt = createElementFactory("p", { class: "all-likes" });
+
   allLikesPhotographer(counterElt, data);
 
   const pricingElt = createElementFactory("p", { class: "photographer-pricing" });
+
   pricingPhotographer(pricingElt, data);
 
   const heartElt = createElementFactory("i", { class: "fas fa-heart" });
-
   allLikesContainer.appendChild(counterElt);
   allLikesContainer.appendChild(heartElt);
   asideElt.appendChild(allLikesContainer);
