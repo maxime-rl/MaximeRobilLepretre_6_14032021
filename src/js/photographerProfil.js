@@ -41,19 +41,57 @@ const createProfileMediasList = (data) => {
         media.date,
         media.price,
         media.alt
-      ).createMediaDomElement();
+      ).createDomElt();
       return mediasList;
     }
   });
 };
 
-const selectElements = document.querySelectorAll("[data-custom]");
+const selectElts = document.querySelectorAll("[data-custom]");
 let select = "";
 
 const createCustomSortSelect = () => {
-  selectElements.forEach(selectElement => {
-    select = new Select(selectElement);
+  selectElts.forEach(selectElt => {
+    select = new Select(selectElt);
+    sortMedias();
     return select;
+  });
+};
+
+// TEST sortMedias
+const sortMedias = () => {
+  const popularityElt = document.querySelector("[data-value='Popularité']");
+  const dateElt = document.querySelector("[data-value='Date']");
+  const titleElt = document.querySelector("[data-value='Titre']");
+
+  popularityElt.addEventListener("click", () => {
+    sortByPopularity(mediasList);
+  });
+
+  dateElt.addEventListener("click", () => {
+    sortByDate(mediasList);
+  });
+
+  titleElt.addEventListener("click", () => {
+    sortByTitle(mediasList);
+  });
+};
+
+const sortByPopularity = (elt) => {
+  return elt.sort((a, b) => b.likes - a.likes);
+};
+
+const sortByDate = (elt) => {
+  return elt.sort((a, b) => new Date(b.date) - new Date(a.date));
+};
+
+const sortByTitle = (elt) => {
+  return elt.sort((a, b) => {
+    const titleA = a.alt.toUpperCase();
+    const titleB = b.alt.toUpperCase();
+    if (titleA < titleB) return -1;
+    if (titleA > titleB) return 1;
+    return 0;
   });
 };
 

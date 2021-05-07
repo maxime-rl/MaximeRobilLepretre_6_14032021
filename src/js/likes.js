@@ -4,25 +4,26 @@ const urlParams = new URLSearchParams(window.location.search);
 
 const createLikesCounterDomElements = (data) => {
   const mainElt = document.querySelector(".photographer-content");
-  const asideElt = createElementFactory("aside", { class: "likes-counter" });
-
+  const asideElt = document.createElement("aside");
+  const allLikesContainer = createElementFactory("div", { class: "all-likes-container" });
   const counterElt = createElementFactory("p", { class: "all-likes" });
+
   allLikesPhotographer(counterElt, data);
 
   const pricingElt = createElementFactory("p", { class: "photographer-pricing" });
+
   pricingPhotographer(pricingElt, data);
 
   const heartElt = createElementFactory("i", { class: "fas fa-heart" });
-
-  counterElt.appendChild(heartElt);
-  asideElt.appendChild(counterElt);
+  allLikesContainer.appendChild(counterElt);
+  allLikesContainer.appendChild(heartElt);
+  asideElt.appendChild(allLikesContainer);
   asideElt.appendChild(pricingElt);
   mainElt.appendChild(asideElt);
 };
 
-let allLikes = 0;
-
 const allLikesPhotographer = (elt, data) => {
+  let allLikes = 0;
   data.media.forEach((media) => {
     if (media.photographerId === Number(urlParams.get("id"))) {
       allLikes += media.likes;
@@ -31,26 +32,35 @@ const allLikesPhotographer = (elt, data) => {
   });
 };
 
-const handleLikes = () => {
-  const btnLikes = document.querySelectorAll(".media-likes");
-  const allLikesDomElt = document.querySelector(".all-likes");
-  const heartElt = document.querySelector(".media-likes > i");
-  let addLike = true;
-  btnLikes.forEach((btnLike) => {
-    btnLike.addEventListener("click", () => {
-      if (addLike) {
-        allLikesDomElt.textContent = allLikes += 1;
-        heartElt.classList.remove("far");
-        heartElt.classList.add("fas");
-        addLike = false;
-      } else if (!addLike) {
-        allLikesDomElt.textContent = allLikes -= 1;
-        heartElt.classList.remove("fas");
-        heartElt.classList.add("far");
-        addLike = true;
+const updateMediaLikes = () => {
+  const heartElts = document.querySelectorAll(".fa-heart");
+
+  for (let i = 0; i < heartElts.length; i++) {
+    heartElts[i].addEventListener("click", () => {
+      heartElts[i].classList.toggle("fas");
+
+      if (heartElts[i].classList.contains("fas")) {
+        heartElts[i].previousSibling.textContent++;
+      } else {
+        heartElts[i].previousSibling.textContent--;
       }
     });
-  });
+  };
+};
+
+const updateAllLikes = () => {
+  const allLikesDomElt = document.querySelector(".all-likes");
+  const heartElts = document.querySelectorAll(".fa-heart");
+
+  for (let i = 0; i < heartElts.length; i++) {
+    heartElts[i].addEventListener("click", () => {
+      if (heartElts[i].classList.contains("fas")) {
+        allLikesDomElt.textContent++;
+      } else {
+        allLikesDomElt.textContent--;
+      }
+    });
+  };
 };
 
 const pricingPhotographer = (elt, data) => {
@@ -62,4 +72,6 @@ const pricingPhotographer = (elt, data) => {
 };
 
 export { createLikesCounterDomElements };
-export { handleLikes };
+export { allLikesPhotographer };
+export { updateAllLikes };
+export { updateMediaLikes };
