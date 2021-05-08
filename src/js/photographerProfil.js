@@ -3,6 +3,12 @@ import "../styles/main.scss";
 import { Photographer } from "./Photographer.js";
 import { MediasFactory } from "./MediasFactory.js";
 import { Select } from "./Select.js";
+import { Lightbox } from "./Lightbox";
+
+import {
+  updateMediaLikes,
+  updateAllLikes
+} from "./likes.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 let mediasList = [];
@@ -26,6 +32,17 @@ const createProfileHeader = (data) => {
   return photographerHeader;
 };
 
+const selectElts = document.querySelectorAll("[data-custom]");
+let select = "";
+
+const createCustomSortSelect = (data) => {
+  selectElts.forEach(selectElt => {
+    select = new Select(selectElt);
+    sortMedias(data);
+    return select;
+  });
+};
+
 const mediaFactory = new MediasFactory();
 
 const createProfileMediasList = (data) => {
@@ -47,33 +64,56 @@ const createProfileMediasList = (data) => {
   });
 };
 
-const selectElts = document.querySelectorAll("[data-custom]");
-let select = "";
-
-const createCustomSortSelect = () => {
-  selectElts.forEach(selectElt => {
-    select = new Select(selectElt);
-    sortMedias();
-    return select;
-  });
+const handleUpdatePhotographer = (data) => {
+  createProfileMediasList(data);
+  updateMediaLikes();
+  updateAllLikes();
+  Lightbox.init();
 };
 
 // TEST sortMedias
-const sortMedias = () => {
+const sortMedias = (data) => {
   const popularityElt = document.querySelector("[data-value='Popularité']");
   const dateElt = document.querySelector("[data-value='Date']");
   const titleElt = document.querySelector("[data-value='Titre']");
 
   popularityElt.addEventListener("click", () => {
-    sortByPopularity(mediasList);
+    const elt = document.querySelector(".medias-list");
+    while (elt.firstChild) {
+      elt.removeChild(elt.firstChild);
+    }
+    sortByPopularity(data.media);
+    handleUpdatePhotographer(data);
   });
 
   dateElt.addEventListener("click", () => {
-    sortByDate(mediasList);
+    const elt = document.querySelector(".medias-list");
+    while (elt.firstChild) {
+      elt.removeChild(elt.firstChild);
+    }
+    sortByDate(data.media);
+    handleUpdatePhotographer(data);
+  });
+
+  titleElt.addEventListener("keydown", e => {
+    if (e.key === "Escape" || e.key === "Enter") {
+      console.log(titleElt);
+      const elt = document.querySelector(".medias-list");
+      while (elt.firstChild) {
+        elt.removeChild(elt.firstChild);
+      }
+      sortByTitle(data.media);
+      handleUpdatePhotographer(data);
+    }
   });
 
   titleElt.addEventListener("click", () => {
-    sortByTitle(mediasList);
+    const elt = document.querySelector(".medias-list");
+    while (elt.firstChild) {
+      elt.removeChild(elt.firstChild);
+    }
+    sortByTitle(data.media);
+    handleUpdatePhotographer(data);
   });
 };
 
@@ -98,3 +138,4 @@ const sortByTitle = (elt) => {
 export { createProfileHeader };
 export { createProfileMediasList };
 export { createCustomSortSelect };
+export { sortByPopularity };

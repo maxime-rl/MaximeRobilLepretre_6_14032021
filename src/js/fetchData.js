@@ -1,39 +1,57 @@
 import { createPhotographersMainList } from "./index.js";
+
 import {
   createFilterTagsNavList,
   filteringPhotographersByTags
 } from "./filterTags.js";
+
 import {
   createProfileHeader,
+  sortByPopularity,
   createProfileMediasList,
   createCustomSortSelect
 } from "./photographerProfil.js";
-import { createLikesCounterDomElements, updateMediaLikes, updateAllLikes } from "./likes.js";
+
+import {
+  createLikesCounterDomElements,
+  updateMediaLikes,
+  updateAllLikes
+} from "./likes.js";
+
 import { handleModalForm } from "./handleModalForm.js";
 import { photographerName } from "./form.js";
 import { Lightbox } from "./Lightbox";
 
+const createPhotographerPage = (data) => {
+  createProfileHeader(data);
+  sortByPopularity(data.media);
+  createProfileMediasList(data);
+  createCustomSortSelect(data);
+  createLikesCounterDomElements(data);
+  updateMediaLikes();
+  updateAllLikes();
+  handleModalForm();
+  photographerName(data);
+  Lightbox.init();
+};
+
+const createMainPage = (data) => {
+  createPhotographersMainList(data);
+  createFilterTagsNavList(data);
+  filteringPhotographersByTags(data);
+};
+
 /**
- * Fetch data
+ * Fetch data and router
  */
 const fetchData = async () => {
   try {
     const response = await fetch("./data/FishEyeData.json");
     const data = await response.json();
     if (window.location.pathname.includes("photographer.html")) {
-      createProfileHeader(data);
-      createProfileMediasList(data);
-      createCustomSortSelect();
-      createLikesCounterDomElements(data);
-      updateMediaLikes();
-      updateAllLikes();
-      handleModalForm();
-      photographerName(data);
-      Lightbox.init();
+      createPhotographerPage(data);
     } else {
-      createPhotographersMainList(data);
-      createFilterTagsNavList(data);
-      filteringPhotographersByTags(data);
+      createMainPage(data);
     }
   } catch (e) {
     console.log("e : ", e);

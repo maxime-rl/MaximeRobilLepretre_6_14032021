@@ -34,7 +34,7 @@ export class Lightbox {
   loadMedia (url) {
     this.url = null;
 
-    const videoElt = createElementFactory("video", { class: "media", preload: "true", controls: "true", loop: "true" });
+    const videoElt = createElementFactory("video", { class: "media", preload: "true", controls: "true", loop: "true", tabindex: "0" });
     const imageElt = createElementFactory("img", { class: "media" });
 
     const container = this.elt.querySelector(".media-container");
@@ -113,8 +113,7 @@ export class Lightbox {
    * @returns {HTMLElement}
    */
   buildDOM () {
-    const dialogDomElt = createElementFactory("div", { role: "dialog", class: "lightbox-dialog", "aria-hidden": "false", "aria-modal": "true", tabindex: "-1" });
-    const documentDomElt = createElementFactory("div", { role: "document", class: "lightbox-modal-content" });
+    const dialogDomElt = createElementFactory("div", { class: "lightbox-dialog", "aria-hidden": "false" });
     const containerDomElt = createElementFactory("div", { class: "lightbox-container" });
 
     const profileHeader = document.querySelector(".page-photographer-header");
@@ -127,21 +126,24 @@ export class Lightbox {
       class: "btn-close",
       title: "Close lightbox",
       "data-dismiss": "lightbox-dialog",
-      "aria-controls": "Close"
+      "aria-controls": "Close",
+      tabindex: "0"
     }, "X");
 
     const btnPrevElt = createElementFactory("button", {
       type: "button",
       class: "btn-prev",
       role: "link",
-      "aria-label": "Previous media"
+      "aria-label": "Previous media",
+      tabindex: "0"
     }, "<");
 
     const btnNextElt = createElementFactory("button", {
       type: "button",
       class: "btn-next",
       role: "link",
-      "aria-label": "Next media"
+      "aria-label": "Next media",
+      tabindex: "0"
     }, ">");
 
     const containerElt = createElementFactory("div", { class: "media-container" });
@@ -151,8 +153,7 @@ export class Lightbox {
     containerDomElt.appendChild(containerElt);
     containerDomElt.appendChild(btnNextElt);
 
-    documentDomElt.appendChild(containerDomElt);
-    dialogDomElt.appendChild(documentDomElt);
+    dialogDomElt.appendChild(containerDomElt);
 
     dialogDomElt.querySelector(".btn-close").addEventListener("click", this.close.bind(this));
     dialogDomElt.querySelector(".btn-next").addEventListener("click", this.next.bind(this));
