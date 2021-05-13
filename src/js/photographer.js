@@ -17,7 +17,7 @@ export class Photographer {
     const cardElt = createElementFactory("li", { class: "photographer" });
     const linkElt = createElementFactory("a", { href: `photographer.html?id=${this.id}`, tabindex: "0" });
     const screenOnlyElt = createElementFactory("span", { class: "sr-only sr-only-focusable" }, `${this.name}`);
-    const imageElt = createElementFactory("img", { src: `./assets/medias/${this.portrait}`, alt: " " });
+    const imageElt = createElementFactory("img", { src: `./assets/medias/${this.portrait}`, alt: `photo de ${this.name}` });
     const nameElt = createElementFactory("h2", {}, `${this.name}`);
     const locationElt = createElementFactory("p", { class: "photographer__location" }, (`${this.city}, ${this.country}`));
     const taglineElt = createElementFactory("p", { class: "photographer__tagline" }, `${this.tagline}`);
@@ -59,9 +59,9 @@ export class Photographer {
     const btnElt = createElementFactory("button", {
       type: "button",
       class: "btn btn-contact",
-      title: "Contact me",
       "aria-haspopup": "form-dialog",
-      "aria-controls": "dialog"
+      "aria-controls": "dialog",
+      "aria-label": "Contact me"
     }, "Contactez-moi");
 
     this.tags.forEach(tag => {

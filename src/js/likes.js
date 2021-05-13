@@ -45,6 +45,19 @@ const updateMediaLikes = () => {
         heartElts[i].previousSibling.textContent--;
       }
     });
+
+    heartElts[i].addEventListener("keydown", e => {
+      if (e.keyCode === 32 || e.key === "Enter") {
+        e.preventDefault();
+        heartElts[i].classList.toggle("fas");
+
+        if (heartElts[i].classList.contains("fas")) {
+          heartElts[i].previousSibling.textContent++;
+        } else {
+          heartElts[i].previousSibling.textContent--;
+        }
+      }
+    });
   };
 };
 
@@ -58,6 +71,17 @@ const updateAllLikes = () => {
         allLikesDomElt.textContent++;
       } else {
         allLikesDomElt.textContent--;
+      }
+    });
+
+    heartElts[i].addEventListener("keydown", e => {
+      if (e.keyCode === 32 || e.key === "Enter") {
+        e.preventDefault();
+        if (heartElts[i].classList.contains("fas")) {
+          allLikesDomElt.textContent++;
+        } else {
+          allLikesDomElt.textContent--;
+        }
       }
     });
   };

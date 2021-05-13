@@ -7,9 +7,9 @@
   bottom: 0;
   left: 0;
   display: flex;
+  background-color: $color-body;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-  background-color: $color-back-modal;
   transition: all .3s ease-in-out;
 }
 
@@ -29,11 +29,29 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  max-width: 100%;
+  height: 80%;
+  width: 992px;
+  margin: auto;
+
+  @include breakpoint(md) {
+    height: 90%;
+  }
 
   .btn-close {
     position: absolute;
     right: 0;
-    top: 10px;
+    top: -5px;
+  }
+
+  .btn-next {
+    position: absolute;
+    right: 0;
+  }
+
+  .btn-prev {
+    position: absolute;
+    left: 0;
   }
 
   .btn-next,
@@ -71,14 +89,41 @@
 
 .media-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 15px;
-  width: 100%;
+  padding: 30px;
+  height: 100%;
 
   img,
   video {
-    max-height: 95vh;
+    object-fit: cover;
+    object-position: top;
+    max-height: 100%;
+    height: 95%;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  video {
+    width: 100%;
+
+    @include breakpoint(lg) {
+      width: 95%;
+    }
+  }
+
+  h2 {
+    margin-bottom: 0;
+    width: 100%;
+    font-size: 18px;
+    color: $color-primary;
+
+    @include breakpoint(lg) {
+      font-size: 30px;
+    }
   }
 }
 

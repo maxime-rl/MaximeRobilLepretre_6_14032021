@@ -51,6 +51,7 @@ function setupCustomElement (select) {
 
   select.options.forEach(option => {
     const optionElt = document.createElement("li");
+    optionElt.setAttribute("tabindex", "0");
     optionElt.classList.add("custom-select-option");
     optionElt.classList.toggle("selected", option.selected);
     optionElt.innerText = option.label;
@@ -75,28 +76,23 @@ function setupCustomElement (select) {
   });
 
   select.customElt.addEventListener("keydown", e => {
-    switch (e.code) {
-      case "Enter":
-      case "Space":
-        select.optionsCustomElt.classList.toggle("show");
-        break;
-      case "ArrowUp":
-        // eslint-disable-next-line no-case-declarations
-        const prevOption = select.options[select.selectedOptionIndex - 1];
-        if (prevOption) {
-          select.selectValue(prevOption.value);
-        }
-        break;
-      case "ArrowDown":
-        // eslint-disable-next-line no-case-declarations
-        const nextOption = select.options[select.selectedOptionIndex + 1];
-        if (nextOption) {
-          select.selectValue(nextOption.value);
-        }
-        break;
-      case "Escape":
-        select.optionsCustomElt.classList.remove("show");
-        break;
+    if (e.key === "Escape" || e.key === "Enter") {
+      e.preventDefault();
+      select.optionsCustomElt.classList.toggle("show");
+    }
+    if (e.key === "ArrowUp" || (e.shiftKey && e.key === "Tab")) {
+      const prevOption = select.options[select.selectedOptionIndex - 1];
+      if (prevOption) {
+        e.preventDefault();
+        select.selectValue(prevOption.value);
+      }
+    }
+    if (e.key === "ArrowDown" || e.key === "Tab") {
+      const nextOption = select.options[select.selectedOptionIndex + 1];
+      if (nextOption) {
+        e.preventDefault();
+        select.selectValue(nextOption.value);
+      }
     }
   });
 }
