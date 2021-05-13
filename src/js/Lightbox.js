@@ -28,6 +28,7 @@ export class Lightbox {
     this.loadMedia(url);
     this.keyBoard = this.keyBoard.bind(this);
     document.body.appendChild(this.elt);
+    document.addEventListener("keydown", this.trapFocus);
     document.addEventListener("keyup", this.keyBoard);
   }
 
@@ -35,7 +36,8 @@ export class Lightbox {
     this.url = null;
 
     const videoElt = createElementFactory("video", { class: "media", preload: "true", controls: "true", loop: "true", tabindex: "0" });
-    const imageElt = createElementFactory("img", { class: "media" });
+    const imageElt = createElementFactory("img", { class: "media", alt: " " });
+    const titleElt = createElementFactory("h2", {});
 
     const container = this.elt.querySelector(".media-container");
     const loaderElt = createElementFactory("div", { class: "media-loading" });
@@ -47,16 +49,22 @@ export class Lightbox {
     if (currentUrl === "jpg") {
       container.removeChild(loaderElt);
       container.appendChild(imageElt);
+      container.appendChild(titleElt);
       this.url = url;
     } else if (currentUrl === "mp4") {
       container.removeChild(loaderElt);
       container.appendChild(videoElt);
+      container.appendChild(titleElt);
       this.url = url;
     }
 
     this.url = url;
     imageElt.src = url;
     videoElt.src = url;
+
+    // Transform URL for media title
+    const titleContentElt = url.split("/").pop().replace(/_|.jpg|.mp4/g, " ").trim();
+    titleElt.textContent = titleContentElt;
   }
 
   /**
@@ -79,6 +87,7 @@ export class Lightbox {
       this.elt.parentElement.removeChild(this.elt);
     }, 500);
     document.removeEventListener("keyup", this.keyBoard);
+    document.removeEventListener("keydown", this.trapFocus);
   }
 
   /**
@@ -113,8 +122,8 @@ export class Lightbox {
    * @returns {HTMLElement}
    */
   buildDOM () {
-    const dialogDomElt = createElementFactory("div", { class: "lightbox-dialog", "aria-hidden": "false" });
-    const containerDomElt = createElementFactory("div", { class: "lightbox-container" });
+    const dialogDomElt = createElementFactory("div", { role: "dialog", class: "lightbox-dialog", "aria-hidden": "false", "aria-modal": "true", "aria-label": "image closeup view", tabindex: "-1" });
+    const containerDomElt = createElementFactory("div", { role: "document", class: "lightbox-container" });
 
     const profileHeader = document.querySelector(".page-photographer-header");
     const profileContent = document.querySelector(".photographer-content");
@@ -126,9 +135,11 @@ export class Lightbox {
       class: "btn-close",
       title: "Close lightbox",
       "data-dismiss": "lightbox-dialog",
-      "aria-controls": "Close",
+      "aria-label": "Close",
       tabindex: "0"
-    }, "X");
+    });
+
+    const iconCloseElt = createElementFactory("img", { src: "./assets/icons/close-lightbox.svg", "aria-hidden": "true" });
 
     const btnPrevElt = createElementFactory("button", {
       type: "button",
@@ -136,7 +147,9 @@ export class Lightbox {
       role: "link",
       "aria-label": "Previous media",
       tabindex: "0"
-    }, "<");
+    });
+
+    const iconPrevElt = createElementFactory("img", { src: "./assets/icons/arrow-left.svg", "aria-hidden": "true" });
 
     const btnNextElt = createElementFactory("button", {
       type: "button",
@@ -144,10 +157,15 @@ export class Lightbox {
       role: "link",
       "aria-label": "Next media",
       tabindex: "0"
-    }, ">");
+    });
+
+    const iconNextElt = createElementFactory("img", { src: "./assets/icons/arrow-right.svg", "aria-hidden": "true" });
 
     const containerElt = createElementFactory("div", { class: "media-container" });
 
+    btnCloseElt.appendChild(iconCloseElt);
+    btnPrevElt.appendChild(iconPrevElt);
+    btnNextElt.appendChild(iconNextElt);
     containerDomElt.appendChild(btnCloseElt);
     containerDomElt.appendChild(btnPrevElt);
     containerDomElt.appendChild(containerElt);
@@ -160,6 +178,40 @@ export class Lightbox {
     dialogDomElt.querySelector(".btn-prev").addEventListener("click", this.previous.bind(this));
 
     return dialogDomElt;
+  }
+
+  trapFocus (e) {
+    // add all focusable elements inside lightbox
+    const focusableEltsArr = 'button, [tabindex]:not([tabindex="-1"])';
+    const lightboxElt = document.querySelector(".lightbox-container");
+
+    // get first element to be focused inside lightbox
+    const firstFocusableElt = lightboxElt.querySelectorAll(focusableEltsArr)[0];
+    const focusableElts = lightboxElt.querySelectorAll(focusableEltsArr);
+
+    // get last element
+    const lastFocusableElt = focusableElts[focusableElts.length - 1];
+
+    const isTabPressed = e.key === "Tab" || e.keyCode === 9;
+
+    if (!isTabPressed) {
+      return;
+    }
+
+    // if shift key pressed for shift + tab combination
+    if (e.shiftKey) {
+      if (document.activeElement === firstFocusableElt) {
+        e.preventDefault();
+        lastFocusableElt.focus();
+      }
+      // if tab key is pressed
+    } else {
+      if (document.activeElement === lastFocusableElt) {
+        e.preventDefault();
+        firstFocusableElt.focus();
+      }
+    }
+    firstFocusableElt.focus();
   }
 
   keyBoard (e) {

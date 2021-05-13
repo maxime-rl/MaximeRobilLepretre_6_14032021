@@ -33,9 +33,7 @@ export class MediasFactory {
     const figureElt = document.createElement("figure");
     const linkElt = createElementFactory("a", {
       href: `./assets/medias/${this.src}`,
-      tabindex: "0",
-      "aria-haspopup": "lightbox-dialog",
-      "aria-controls": "lightbox-dialog"
+      tabindex: "0"
     });
     const figcaptionElt = document.createElement("figcaption");
     const titleElt = createElementFactory("h2", {}, `${this.alt}`);
