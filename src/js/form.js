@@ -22,6 +22,7 @@ if (window.location.pathname.includes("photographer.html")) {
   const dialog = document.getElementById("dialog");
   const profileHeader = document.querySelector(".page-photographer-header");
   const profileContent = document.querySelector(".photographer-content");
+  const formComment = document.querySelector(".form-comment");
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -31,10 +32,14 @@ if (window.location.pathname.includes("photographer.html")) {
       console.log(`Nom : ${lastName.value}`);
       console.log(`Email : ${email.value}`);
       console.log(`Votre message : ${comment.value}`);
+      formComment.textContent = " ";
+      this.reset();
 
       dialog.setAttribute("aria-hidden", true);
       profileHeader.setAttribute("aria-hidden", false);
       profileContent.setAttribute("aria-hidden", false);
+    } else {
+      formComment.textContent = "Vous devez remplir tous les champs du formulaire";
     }
   });
 }

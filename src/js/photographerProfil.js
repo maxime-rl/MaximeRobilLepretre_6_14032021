@@ -11,6 +11,15 @@ import {
   updateAllLikes
 } from "./likes.js";
 
+const createPhotographerPageTitleTag = (data) => {
+  const titleElt = document.querySelector("title");
+  data.photographers.forEach((photographer) => {
+    if (photographer.id === Number(urlParams.get("id"))) {
+      titleElt.textContent = "Fishye - profil de " + photographer.name;
+    }
+  });
+};
+
 const urlParams = new URLSearchParams(window.location.search);
 let mediasList = [];
 
@@ -71,6 +80,7 @@ const handleUpdatePhotographer = (data) => {
   Lightbox.init();
 };
 
+export { createPhotographerPageTitleTag };
 export { createProfileHeader };
 export { createProfileMediasList };
 export { createCustomSortSelect };

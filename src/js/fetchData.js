@@ -8,6 +8,7 @@ import {
 import { sortMedias, sortByPopularity } from "./sort";
 
 import {
+  createPhotographerPageTitleTag,
   createProfileHeader,
   createProfileMediasList,
   createCustomSortSelect
@@ -24,6 +25,7 @@ import { photographerName } from "./form.js";
 import { Lightbox } from "./Lightbox";
 
 const createPhotographerPage = (data) => {
+  createPhotographerPageTitleTag(data);
   createProfileHeader(data);
   sortByPopularity(data.media);
   createProfileMediasList(data);
