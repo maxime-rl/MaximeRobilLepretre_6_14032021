@@ -76,10 +76,10 @@ function setupCustomElement (select) {
   });
 
   select.customElt.addEventListener("keydown", e => {
-    if (e.key === "Escape" || e.key === "Enter") {
-      e.preventDefault();
-      select.optionsCustomElt.classList.toggle("show");
-    }
+    // if (e.key === "Escape" || e.key === "Enter") {
+    //   e.preventDefault();
+    //   select.optionsCustomElt.classList.toggle("show");
+    // }
     if (e.key === "ArrowUp" || (e.shiftKey && e.key === "Tab")) {
       const prevOption = select.options[select.selectedOptionIndex - 1];
       if (prevOption) {

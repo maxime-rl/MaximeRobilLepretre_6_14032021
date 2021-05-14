@@ -26,6 +26,7 @@ export class Lightbox {
     this.elt = this.buildDOM(url);
     this.medias = medias;
     this.loadMedia(url);
+    // this.trapFocus = this.trapFocus.bind(this);
     this.keyBoard = this.keyBoard.bind(this);
     document.body.style.overflow = "hidden";
     document.body.appendChild(this.elt);
@@ -182,38 +183,46 @@ export class Lightbox {
     return dialogDomElt;
   }
 
-  trapFocus (e) {
+  trapFocus () {
     // add all focusable elements inside lightbox
-    const focusableEltsArr = 'button, [tabindex]:not([tabindex="-1"])';
-    const lightboxElt = document.querySelector(".lightbox-container");
+    const focusableEltsArr = 'button, video, [tabindex]:not([tabindex="-1"])';
+    const lightboxElt = document.querySelector(".lightbox-dialog");
 
     // get first element to be focused inside lightbox
-    const firstFocusableElt = lightboxElt.querySelectorAll(focusableEltsArr)[0];
     const focusableElts = lightboxElt.querySelectorAll(focusableEltsArr);
+    const firstFocusableElt = focusableElts[0];
 
     // get last element
     const lastFocusableElt = focusableElts[focusableElts.length - 1];
 
-    const isTabPressed = e.key === "Tab" || e.keyCode === 9;
+    window.setTimeout(() => {
+      firstFocusableElt.focus();
 
-    if (!isTabPressed) {
-      return;
-    }
+      // trapping focus inside the dialog
+      focusableElts.forEach((focusableElt) => {
+        if (focusableElt.addEventListener) {
+          focusableElt.addEventListener("keydown", (e) => {
+            const isTabPressed = e.key === "Tab" || e.keyCode === 9;
 
-    // if shift key pressed for shift + tab combination
-    if (e.shiftKey) {
-      if (document.activeElement === firstFocusableElt) {
-        e.preventDefault();
-        lastFocusableElt.focus();
-      }
-      // if tab key is pressed
-    } else {
-      if (document.activeElement === lastFocusableElt) {
-        e.preventDefault();
-        firstFocusableElt.focus();
-      }
-    }
-    firstFocusableElt.focus();
+            if (!isTabPressed) {
+              return;
+            }
+
+            if (e.shiftKey) {
+              if (e.target === firstFocusableElt) { // shift + tab
+                e.preventDefault();
+
+                lastFocusableElt.focus();
+              }
+            } else if (e.target === lastFocusableElt) { // tab
+              e.preventDefault();
+
+              firstFocusableElt.focus();
+            }
+          });
+        }
+      });
+    }, 500);
   }
 
   keyBoard (e) {

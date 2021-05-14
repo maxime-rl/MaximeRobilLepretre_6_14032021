@@ -14,7 +14,9 @@ const createLikesCounterDomElements = (data) => {
 
   pricingPhotographer(pricingElt, data);
 
-  const heartElt = createElementFactory("i", { class: "fas fa-heart" });
+  // const heartElt = createElementFactory("i", { class: "fas fa-heart" });
+  const heartElt = createElementFactory("img", { src: "./assets/icons/filled-heart.svg", alt: " ", "aria-hidden": "true" });
+
   allLikesContainer.appendChild(counterElt);
   allLikesContainer.appendChild(heartElt);
   asideElt.appendChild(allLikesContainer);
