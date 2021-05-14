@@ -26,7 +26,7 @@ export class Photographer {
 
     this.tags.forEach(tag => {
       const tagElt = createElementFactory("li");
-      const linkTagElt = createElementFactory("a", { href: "index.html", class: "tag" });
+      const linkTagElt = createElementFactory("a", { href: "#", class: "tag" });
       const screenOnlyTagElt = createElementFactory("span", { class: "sr-only" }, "tag");
 
       linkTagElt.textContent = "#" + tag;
@@ -51,7 +51,7 @@ export class Photographer {
 
   createProfileHeaderDomElements () {
     const headerElt = document.querySelector(".profil-photographer-header");
-    const imageElt = createElementFactory("img", { src: `./assets/medias/${this.portrait}`, alt: `${this.name}` });
+    const imageElt = createElementFactory("img", { src: `./assets/medias/${this.portrait}`, alt: `Photo de ${this.name}` });
     const nameElt = createElementFactory("h1", {}, `${this.name}`);
     const locationElt = createElementFactory("p", { class: "photographer__location" }, (`${this.city}, ${this.country}`));
     const taglineElt = createElementFactory("p", { class: "photographer__tagline" }, `${this.tagline}`);
@@ -66,7 +66,7 @@ export class Photographer {
 
     this.tags.forEach(tag => {
       const liElTag = document.createElement("li");
-      const aElTag = createElementFactory("a", { href: "index.html", class: "tag" });
+      const aElTag = createElementFactory("a", { href: "#", class: "tag", "data-filter": `${tag}` });
       const spanElTag = createElementFactory("span", { class: "sr-only" }, "tag");
 
       aElTag.textContent = "#" + tag;

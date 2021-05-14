@@ -169,6 +169,7 @@
 .medias-list {
   max-width: 1440px;
   margin: 0 auto;
+  padding-top: 20px;
 
   @include breakpoint(md) {
     display: grid;
@@ -190,6 +191,7 @@
 
   @include breakpoint(xxl) {
     margin: 0 80px;
+    padding-top: 0;
   }
 }
 
@@ -342,6 +344,7 @@
 
   .all-likes-container {
     display: flex;
+    align-items: center;
 
     i {
       font-size: 19px;
@@ -350,6 +353,7 @@
 
   .all-likes {
     padding: 0 10px 0 25px;
+    min-width: 45px;
   }
 
   .photographer-pricing {

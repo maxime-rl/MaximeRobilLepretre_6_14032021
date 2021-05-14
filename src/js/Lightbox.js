@@ -27,6 +27,7 @@ export class Lightbox {
     this.medias = medias;
     this.loadMedia(url);
     this.keyBoard = this.keyBoard.bind(this);
+    document.body.style.overflow = "hidden";
     document.body.appendChild(this.elt);
     document.addEventListener("keydown", this.trapFocus);
     document.addEventListener("keyup", this.keyBoard);
@@ -36,7 +37,7 @@ export class Lightbox {
     this.url = null;
 
     const videoElt = createElementFactory("video", { class: "media", preload: "true", controls: "true", loop: "true", tabindex: "0" });
-    const imageElt = createElementFactory("img", { class: "media", alt: " " });
+    const imageElt = createElementFactory("img", { class: "media", alt: `${this.url}` });
     const titleElt = createElementFactory("h2", {});
 
     const container = this.elt.querySelector(".media-container");
@@ -74,6 +75,7 @@ export class Lightbox {
   close (e) {
     e.preventDefault();
     this.elt.classList.add("fade-out");
+    document.body.style.overflow = "initial";
 
     const profileHeader = document.querySelector(".page-photographer-header");
     const profileContent = document.querySelector(".photographer-content");
@@ -139,7 +141,7 @@ export class Lightbox {
       tabindex: "0"
     });
 
-    const iconCloseElt = createElementFactory("img", { src: "./assets/icons/close-lightbox.svg", "aria-hidden": "true" });
+    const iconCloseElt = createElementFactory("img", { src: "./assets/icons/close-lightbox.svg", alt: " ", "aria-hidden": "true" });
 
     const btnPrevElt = createElementFactory("button", {
       type: "button",
@@ -149,7 +151,7 @@ export class Lightbox {
       tabindex: "0"
     });
 
-    const iconPrevElt = createElementFactory("img", { src: "./assets/icons/arrow-left.svg", "aria-hidden": "true" });
+    const iconPrevElt = createElementFactory("img", { src: "./assets/icons/arrow-left.svg", alt: " ", "aria-hidden": "true" });
 
     const btnNextElt = createElementFactory("button", {
       type: "button",
@@ -159,7 +161,7 @@ export class Lightbox {
       tabindex: "0"
     });
 
-    const iconNextElt = createElementFactory("img", { src: "./assets/icons/arrow-right.svg", "aria-hidden": "true" });
+    const iconNextElt = createElementFactory("img", { src: "./assets/icons/arrow-right.svg", alt: " ", "aria-hidden": "true" });
 
     const containerElt = createElementFactory("div", { class: "media-container" });
 
