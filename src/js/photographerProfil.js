@@ -4,7 +4,6 @@ import { Photographer } from "./Photographer.js";
 import { MediasFactory } from "./MediasFactory.js";
 import { Select } from "./Select.js";
 import { Lightbox } from "./Lightbox.js";
-// import { sortMedias } from "./sort.js";
 
 import {
   updateMediaLikes,

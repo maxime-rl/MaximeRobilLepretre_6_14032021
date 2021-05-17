@@ -21,6 +21,7 @@ const handleModalForm = () => {
     const lastFocusableElt = focusableElts[focusableElts.length - 1];
 
     document.body.style.overflow = "hidden";
+    dialog.style.display = "flex";
     dialog.setAttribute("aria-hidden", false);
     dialog.setAttribute("aria-modal", true);
     profileHeader.setAttribute("aria-hidden", true);
@@ -63,6 +64,7 @@ const handleModalForm = () => {
 
   const close = function (dialog, trigger) {
     document.body.style.overflow = "auto";
+    dialog.style.display = "none";
     dialog.setAttribute("aria-hidden", true);
     dialog.setAttribute("aria-modal", false);
     profileHeader.setAttribute("aria-hidden", false);

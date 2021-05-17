@@ -6,6 +6,7 @@ export class Select {
     this.labelElt = document.createElement("span");
     this.optionsCustomElt = document.createElement("ul");
     setupCustomElement(this);
+    keyBoardSelect(this);
     elt.style.display = "none";
     elt.after(this.customElt);
   }
@@ -39,7 +40,7 @@ export class Select {
   }
 }
 
-function setupCustomElement (select) {
+const setupCustomElement = (select) => {
   select.customElt.classList.add("custom-select-container");
   select.customElt.tabIndex = 0;
 
@@ -74,12 +75,14 @@ function setupCustomElement (select) {
   select.labelElt.addEventListener("blur", () => {
     select.optionsCustomElt.classList.remove("show");
   });
+};
 
+const keyBoardSelect = (select) => {
   select.customElt.addEventListener("keydown", e => {
-    // if (e.key === "Escape" || e.key === "Enter") {
-    //   e.preventDefault();
-    //   select.optionsCustomElt.classList.toggle("show");
-    // }
+    if (e.key === "Escape" || e.key === "Enter") {
+      e.preventDefault();
+      select.optionsCustomElt.classList.toggle("show");
+    }
     if (e.key === "ArrowUp" || (e.shiftKey && e.key === "Tab")) {
       const prevOption = select.options[select.selectedOptionIndex - 1];
       if (prevOption) {
@@ -95,9 +98,9 @@ function setupCustomElement (select) {
       }
     }
   });
-}
+};
 
-function getFormattedOptions (optionElts) {
+const getFormattedOptions = (optionElts) => {
   return [...optionElts].map(optionElt => {
     return {
       value: optionElt.value,
@@ -106,4 +109,4 @@ function getFormattedOptions (optionElts) {
       elt: optionElt
     };
   });
-}
+};

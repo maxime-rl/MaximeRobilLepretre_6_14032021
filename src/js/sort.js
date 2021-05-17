@@ -14,6 +14,18 @@ const sortMedias = (data) => {
     handleUpdatePhotographer(data);
   });
 
+  popularityElt.addEventListener("keydown", e => {
+    console.log(popularityElt);
+    if (e.key === "Escape" || e.key === "Enter") {
+      const elt = document.querySelector(".medias-list");
+      while (elt.firstChild) {
+        elt.removeChild(elt.firstChild);
+      }
+      sortByPopularity(data.media);
+      handleUpdatePhotographer(data);
+    }
+  });
+
   dateElt.addEventListener("click", () => {
     const elt = document.querySelector(".medias-list");
     while (elt.firstChild) {
@@ -21,6 +33,18 @@ const sortMedias = (data) => {
     }
     sortByDate(data.media);
     handleUpdatePhotographer(data);
+  });
+
+  dateElt.addEventListener("keydown", e => {
+    console.log(dateElt);
+    if (e.key === "Escape" || e.key === "Enter") {
+      const elt = document.querySelector(".medias-list");
+      while (elt.firstChild) {
+        elt.removeChild(elt.firstChild);
+      }
+      sortByDate(data.media);
+      handleUpdatePhotographer(data);
+    }
   });
 
   titleElt.addEventListener("click", () => {
@@ -33,6 +57,7 @@ const sortMedias = (data) => {
   });
 
   titleElt.addEventListener("keydown", e => {
+    console.log(titleElt);
     if (e.key === "Escape" || e.key === "Enter") {
       const elt = document.querySelector(".medias-list");
       while (elt.firstChild) {
