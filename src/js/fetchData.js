@@ -10,8 +10,7 @@ import { sortMedias, sortByPopularity } from "./sort";
 import {
   createPhotographerPageTitleTag,
   createProfileHeader,
-  createProfileMediasList,
-  createCustomSortSelect
+  createProfileMediasList
 } from "./photographerProfil.js";
 
 import {
@@ -29,7 +28,6 @@ const createPhotographerPage = (data) => {
   createProfileHeader(data);
   sortByPopularity(data.media);
   createProfileMediasList(data);
-  createCustomSortSelect(data);
   sortMedias(data);
   createLikesCounterDomElements(data);
   updateMediaLikes();

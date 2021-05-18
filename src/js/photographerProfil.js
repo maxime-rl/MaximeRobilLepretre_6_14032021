@@ -2,7 +2,6 @@ import "../styles/main.scss";
 
 import { Photographer } from "./Photographer.js";
 import { MediasFactory } from "./MediasFactory.js";
-import { Select } from "./Select.js";
 import { Lightbox } from "./Lightbox.js";
 
 import {
@@ -41,16 +40,6 @@ const createProfileHeader = (data) => {
   return photographerHeader;
 };
 
-const selectElts = document.querySelectorAll("[data-custom]");
-let select = "";
-
-const createCustomSortSelect = () => {
-  selectElts.forEach(selectElt => {
-    select = new Select(selectElt);
-    return select;
-  });
-};
-
 const mediaFactory = new MediasFactory();
 
 const createProfileMediasList = (data) => {
@@ -82,5 +71,4 @@ const handleUpdatePhotographer = (data) => {
 export { createPhotographerPageTitleTag };
 export { createProfileHeader };
 export { createProfileMediasList };
-export { createCustomSortSelect };
 export { handleUpdatePhotographer };

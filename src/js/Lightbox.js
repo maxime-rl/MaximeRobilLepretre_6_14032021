@@ -37,7 +37,7 @@ export class Lightbox {
   loadMedia (url) {
     this.url = null;
 
-    const videoElt = createElementFactory("video", { class: "media", preload: "true", controls: "true", loop: "true", tabindex: "0" });
+    const videoElt = createElementFactory("video", { class: "media", preload: "true", controls: "true", loop: "true", autoplay: "false", tabindex: "0" });
     const imageElt = createElementFactory("img", { class: "media", alt: `${this.url}` });
     const titleElt = createElementFactory("h2", {});
 

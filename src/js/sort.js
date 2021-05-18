@@ -1,68 +1,22 @@
 import { handleUpdatePhotographer } from "./photographerProfil";
 
 const sortMedias = (data) => {
-  const popularityElt = document.querySelector("[data-value='Popularité']");
-  const dateElt = document.querySelector("[data-value='Date']");
-  const titleElt = document.querySelector("[data-value='Titre']");
+  const selectElt = document.getElementById("sortBy");
+  const mediasListElt = document.querySelector(".medias-list");
 
-  popularityElt.addEventListener("click", () => {
-    const elt = document.querySelector(".medias-list");
-    while (elt.firstChild) {
-      elt.removeChild(elt.firstChild);
-    }
-    sortByPopularity(data.media);
-    handleUpdatePhotographer(data);
-  });
-
-  popularityElt.addEventListener("keydown", e => {
-    console.log(popularityElt);
-    if (e.key === "Escape" || e.key === "Enter") {
-      const elt = document.querySelector(".medias-list");
-      while (elt.firstChild) {
-        elt.removeChild(elt.firstChild);
-      }
+  selectElt.addEventListener("change", () => {
+    if (selectElt.value === "Popularité") {
+      removeFirstChildElt(mediasListElt);
       sortByPopularity(data.media);
       handleUpdatePhotographer(data);
     }
-  });
-
-  dateElt.addEventListener("click", () => {
-    const elt = document.querySelector(".medias-list");
-    while (elt.firstChild) {
-      elt.removeChild(elt.firstChild);
-    }
-    sortByDate(data.media);
-    handleUpdatePhotographer(data);
-  });
-
-  dateElt.addEventListener("keydown", e => {
-    console.log(dateElt);
-    if (e.key === "Escape" || e.key === "Enter") {
-      const elt = document.querySelector(".medias-list");
-      while (elt.firstChild) {
-        elt.removeChild(elt.firstChild);
-      }
+    if (selectElt.value === "Date") {
+      removeFirstChildElt(mediasListElt);
       sortByDate(data.media);
       handleUpdatePhotographer(data);
     }
-  });
-
-  titleElt.addEventListener("click", () => {
-    const elt = document.querySelector(".medias-list");
-    while (elt.firstChild) {
-      elt.removeChild(elt.firstChild);
-    }
-    sortByTitle(data.media);
-    handleUpdatePhotographer(data);
-  });
-
-  titleElt.addEventListener("keydown", e => {
-    console.log(titleElt);
-    if (e.key === "Escape" || e.key === "Enter") {
-      const elt = document.querySelector(".medias-list");
-      while (elt.firstChild) {
-        elt.removeChild(elt.firstChild);
-      }
+    if (selectElt.value === "Titre") {
+      removeFirstChildElt(mediasListElt);
       sortByTitle(data.media);
       handleUpdatePhotographer(data);
     }
@@ -85,6 +39,12 @@ const sortByTitle = (elt) => {
     if (titleA > titleB) return 1;
     return 0;
   });
+};
+
+const removeFirstChildElt = (elt) => {
+  while (elt.firstChild) {
+    elt.removeChild(elt.firstChild);
+  }
 };
 
 export { sortMedias };
