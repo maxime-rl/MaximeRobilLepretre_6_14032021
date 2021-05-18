@@ -20,12 +20,15 @@
   <!-- MAIN -->
   <main class="photographer-content" aria-hidden="false">
     <header class="profil-photographer-header"></header>
-    <label  for="sortBy" class="sort-label">Trier par</label>
-    <select id="sortBy">
-      <option value="Popularité">Popularité</option>
-      <option value="Date">Date</option>
-      <option value="Titre">Titre</option>
-    </select>
+    <div class="dropdown-container">
+      <label  for="sortBy" class="sort-label">Trier par</label>
+      <select id="sortBy">
+        <option value="Popularité">Popularité</option>
+        <option value="Date">Date</option>
+        <option value="Titre">Titre</option>
+      </select>
+      <i class="fas fa-chevron-down select-icon"></i>
+    </div>
     <ul class="medias-list"></ul>
   </main>
   <!-- MODAL FORM -->

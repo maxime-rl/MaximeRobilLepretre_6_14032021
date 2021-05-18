@@ -47,5 +47,22 @@ const removeFirstChildElt = (elt) => {
   }
 };
 
+const changeIconselect = () => {
+  const selectElt = document.getElementById("sortBy");
+  const selectIconElt = document.querySelector(".select-icon");
+  // const mainElt = document.querySelector("main");
+
+  selectElt.addEventListener("click", () => {
+    selectIconElt.classList.toggle("fa-chevron-up");
+  });
+
+  // if (selectIconElt.classList.contains("fa-chevron-up")) {
+  //   mainElt.addEventListener("click", () => {
+  //     selectIconElt.classList.remove("fa-chevron-up");
+  //   });
+  // }
+};
+
 export { sortMedias };
 export { sortByPopularity };
+export { changeIconselect };

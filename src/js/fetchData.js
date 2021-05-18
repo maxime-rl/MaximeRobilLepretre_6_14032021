@@ -5,7 +5,7 @@ import {
   filteringPhotographersByTags
 } from "./filterTags.js";
 
-import { sortMedias, sortByPopularity } from "./sort";
+import { sortMedias, sortByPopularity, changeIconselect } from "./sort";
 
 import {
   createPhotographerPageTitleTag,
@@ -29,6 +29,7 @@ const createPhotographerPage = (data) => {
   sortByPopularity(data.media);
   createProfileMediasList(data);
   sortMedias(data);
+  changeIconselect();
   createLikesCounterDomElements(data);
   updateMediaLikes();
   updateAllLikes();
