@@ -2,27 +2,38 @@ import "../styles/main.scss";
 
 import { Photographer } from "./Photographer.js";
 import { MediasFactory } from "./MediasFactory.js";
-import { Select } from "./Select.js";
 import { Lightbox } from "./Lightbox.js";
-// import { sortMedias } from "./sort.js";
 
 import {
   updateMediaLikes,
   updateAllLikes
 } from "./likes.js";
 
+/**
+ * Variables and constants
+ */
+const urlParams = new URLSearchParams(window.location.search);
+let mediasList = [];
+const mediaFactory = new MediasFactory();
+
+/**
+ * Create title tag foreach photographer
+ * @param {data} data
+ */
 const createPhotographerPageTitleTag = (data) => {
   const titleElt = document.querySelector("title");
   data.photographers.forEach((photographer) => {
     if (photographer.id === Number(urlParams.get("id"))) {
-      titleElt.textContent = "Fishye - profil de " + photographer.name;
+      titleElt.textContent = "FishEye - profil de " + photographer.name;
     }
   });
 };
 
-const urlParams = new URLSearchParams(window.location.search);
-let mediasList = [];
-
+/**
+ * Create photographer header for page photographer
+ * @param {data} data
+ * @returns {HTMLElement}
+ */
 const createProfileHeader = (data) => {
   let photographerHeader = "";
   data.photographers.forEach((photographer) => {
@@ -37,23 +48,16 @@ const createProfileHeader = (data) => {
         photographer.tagline,
         photographer.price
       ).createProfileHeaderDomElements());
+      return photographerHeader;
     }
   });
-  return photographerHeader;
 };
 
-const selectElts = document.querySelectorAll("[data-custom]");
-let select = "";
-
-const createCustomSortSelect = () => {
-  selectElts.forEach(selectElt => {
-    select = new Select(selectElt);
-    return select;
-  });
-};
-
-const mediaFactory = new MediasFactory();
-
+/**
+ * Create medias list for page photographer
+ * @param {data} data
+ * @returns {HTMLElement}
+ */
 const createProfileMediasList = (data) => {
   data.media.forEach((media) => {
     if (media.photographerId === Number(urlParams.get("id"))) {
@@ -83,5 +87,4 @@ const handleUpdatePhotographer = (data) => {
 export { createPhotographerPageTitleTag };
 export { createProfileHeader };
 export { createProfileMediasList };
-export { createCustomSortSelect };
 export { handleUpdatePhotographer };

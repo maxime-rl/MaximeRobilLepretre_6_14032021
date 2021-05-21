@@ -2,6 +2,11 @@ import { createElementFactory } from "./createElementFactory.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 
+/**
+ * Create aside with likes counter and price photographer
+ * @param {data}
+ * @returns {HTMLElement}
+ */
 const createLikesCounterDomElements = (data) => {
   const mainElt = document.querySelector(".photographer-content");
   const asideElt = document.createElement("aside");
@@ -14,7 +19,9 @@ const createLikesCounterDomElements = (data) => {
 
   pricingPhotographer(pricingElt, data);
 
-  const heartElt = createElementFactory("i", { class: "fas fa-heart" });
+  // const heartElt = createElementFactory("i", { class: "fas fa-heart" });
+  const heartElt = createElementFactory("img", { src: "./assets/icons/filled-heart.svg", alt: " ", "aria-hidden": "true" });
+
   allLikesContainer.appendChild(counterElt);
   allLikesContainer.appendChild(heartElt);
   asideElt.appendChild(allLikesContainer);
@@ -87,6 +94,11 @@ const updateAllLikes = () => {
   };
 };
 
+/**
+ * Create photographer price
+ * @param {HTMLElement}
+ * @param {data}
+ */
 const pricingPhotographer = (elt, data) => {
   data.photographers.forEach((photographer) => {
     if (photographer.id === Number(urlParams.get("id"))) {
