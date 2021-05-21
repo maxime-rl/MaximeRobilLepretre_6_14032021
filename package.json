@@ -1,5 +1,5 @@
 {
-  "name": "webpack-starter",
+  "name": "fisheye",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
@@ -13,14 +13,14 @@
   "proxy": "http://localhost:4000",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maxime-rl/webpack-starter.git"
+    "url": "https://github.com/maxime-rl/MaximeRobilLepretre_6_14032021"
   },
   "author": "maxime-rl",
   "license": "MIT License",
   "bugs": {
-    "url": "https://github.com/maxime-rl/webpack-starter/issues"
+    "url": "https://github.com/maxime-rl/MaximeRobilLepretre_6_14032021/issues"
   },
-  "homepage": "https://github.com/maxime-rl/webpack-starter#readme",
+  "homepage": "https://maxime-rl.github.io/MaximeRobilLepretre_6_14032021/",
   "devDependencies": {
     "@babel/cli": "^7.13.10",
     "@babel/core": "^7.13.10",

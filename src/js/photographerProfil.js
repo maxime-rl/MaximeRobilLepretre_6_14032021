@@ -13,7 +13,7 @@ const createPhotographerPageTitleTag = (data) => {
   const titleElt = document.querySelector("title");
   data.photographers.forEach((photographer) => {
     if (photographer.id === Number(urlParams.get("id"))) {
-      titleElt.textContent = "Fishye - profil de " + photographer.name;
+      titleElt.textContent = "FishEye - profil de " + photographer.name;
     }
   });
 };
