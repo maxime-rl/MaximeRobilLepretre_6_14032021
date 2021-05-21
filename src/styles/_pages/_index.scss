@@ -3,7 +3,7 @@
   padding: 40px 20px 0 20px;
   max-width: 1440px;
 
-  @include breakpoint(lg) {
+  @media (min-width: 1141px) {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: auto;
@@ -11,7 +11,7 @@
     padding: 40px 20px;
   }
 
-  @include breakpoint(xl) {
+  @media (min-width: 1324px) {
     grid-template-columns: repeat(7, 1fr);
     grid-template-areas: "logo nav nav nav nav . . ";
   }
@@ -26,7 +26,7 @@
     grid-area: nav;
     margin-top: 35px;
 
-    @include breakpoint(lg) {
+    @media (min-width: 1141px) {
       margin-top: 6px;
     }
   }
@@ -67,18 +67,22 @@
     color: $color-primary;
 
     @media (min-width: 369.9px) {
+      top: -169px;
+    }
+
+    @media (min-width: 445px) {
       top: -141px;
     }
 
-    @media (min-width: 639px) {
+    @media (min-width: 773px) {
       top: -113.5px;
     }
 
-    @include breakpoint(lg) {
-      top: -92px;
+    @media (min-width: 1141px) {
+      top: -93.5px;
     }
   
-    @include breakpoint(xl) {
+    @media (min-width: 1324px) {
       top: -109px;
       font-size: 36px;
     }
