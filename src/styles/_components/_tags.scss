@@ -12,6 +12,7 @@
   margin: 3px 6px 3px 0;
   padding: 2px 7px;
   color: $color-primary;
+  background-color: $color-body;
   border: .5px solid $color-border-tag;
   border-radius: 12px;
   font-size: 1.6rem;
@@ -49,6 +50,7 @@
 
   &--active {
     color: $color-body;
+    background-color: $color-primary;
 
     &::after {
       opacity: 1;

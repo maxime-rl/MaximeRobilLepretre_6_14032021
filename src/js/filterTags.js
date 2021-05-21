@@ -15,7 +15,7 @@ const createFilterTagsNavList = (data) => {
   collectSortedTags(data).forEach((tag) => {
     const tagElt = createElementFactory("li");
     const linkElt = createElementFactory("a", { href: "#", class: "tag", "data-filter": `${tag}` });
-    const screenOnlyElt = createElementFactory("span", { class: "sr-only" }, "tag");
+    const screenOnlyElt = createElementFactory("span", { class: "sr-only" }, tag);
 
     linkElt.textContent = "#" + tag;
     linkElt.appendChild(screenOnlyElt);

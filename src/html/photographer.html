@@ -21,8 +21,8 @@
   <main class="photographer-content" aria-hidden="false">
     <header class="profil-photographer-header"></header>
     <div class="dropdown-container">
-      <label  for="sortBy" class="sort-label">Trier par</label>
-      <select id="sortBy">
+      <label for="sortBy" class="sort-label">Trier par</label>
+      <select id="sortBy" aria-labelledby="sortBy">
         <option value="Popularité">Popularité</option>
         <option value="Date">Date</option>
         <option value="Titre">Titre</option>
@@ -58,8 +58,10 @@
         <input type="email" name="email" id="email" aria-labelledby="email" aria-required=true>
         <label for="comment">Votre message</label>
         <textarea name="comment" id="comment" cols="15" rows="5" aria-labelledby="comment" aria-required=true></textarea>
-        <small class="form-comment"></small>
-        <input type="submit" class="btn btn-submit" value="Envoyer">
+        <div class="alert-comment-container" role="alertdialog" aria-describedby="alert-message">
+          <small class="alert-comment" id="alert-message" role="document" aria-label="Alert message" tabindex="0"></small>
+        </div>
+        <input type="submit" class="btn btn-submit" value="Envoyer" title="Submit form">
       </form>
     </div>
   </div>

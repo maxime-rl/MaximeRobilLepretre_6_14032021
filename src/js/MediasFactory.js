@@ -34,7 +34,8 @@ export class MediasFactory {
     const linkElt = createElementFactory("a", {
       href: `./assets/medias/${this.src}`,
       tabindex: "0",
-      "aria-label": "media link"
+      "aria-label": "media link",
+      title: `${this.alt}, close up view`
     });
     const figcaptionElt = document.createElement("figcaption");
     const titleElt = createElementFactory("h2", {}, `${this.alt}`);
@@ -70,8 +71,7 @@ export class Photo extends MediasFactory {
     const photoMedia = createElementFactory("img", {
       src: `./assets/medias/${this.src}`,
       class: "media",
-      alt: "",
-      title: `${this.alt}, closeup view`
+      alt: `${this.alt}`
     });
     this.createMediaDomElts(photoMedia);
   };
@@ -82,9 +82,8 @@ export class Video extends MediasFactory {
     const videoMedia = createElementFactory("video", {
       src: `./assets/medias/${this.src}`,
       preload: "true",
-      alt: "",
-      class: "media",
-      title: `${this.alt}, closeup view`
+      alt: `${this.alt}`,
+      class: "media"
     });
     this.createMediaDomElts(videoMedia);
   };

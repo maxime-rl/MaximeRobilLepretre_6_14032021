@@ -97,8 +97,11 @@
       border-radius: .2rem;
     }
 
-    .form-comment {
+    .alert-comment-container {
       padding-top: 10px;
+    }
+
+    .alert-comment {
       font-size: 14px;
       font-weight: 700;
       color: $color-primary;
