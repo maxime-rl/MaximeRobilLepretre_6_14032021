@@ -9,6 +9,17 @@ import {
   updateAllLikes
 } from "./likes.js";
 
+/**
+ * Variables and constants
+ */
+const urlParams = new URLSearchParams(window.location.search);
+let mediasList = [];
+const mediaFactory = new MediasFactory();
+
+/**
+ * Create title tag foreach photographer
+ * @param {data} data
+ */
 const createPhotographerPageTitleTag = (data) => {
   const titleElt = document.querySelector("title");
   data.photographers.forEach((photographer) => {
@@ -18,9 +29,11 @@ const createPhotographerPageTitleTag = (data) => {
   });
 };
 
-const urlParams = new URLSearchParams(window.location.search);
-let mediasList = [];
-
+/**
+ * Create photographer header for page photographer
+ * @param {data} data
+ * @returns {HTMLElement}
+ */
 const createProfileHeader = (data) => {
   let photographerHeader = "";
   data.photographers.forEach((photographer) => {
@@ -35,13 +48,16 @@ const createProfileHeader = (data) => {
         photographer.tagline,
         photographer.price
       ).createProfileHeaderDomElements());
+      return photographerHeader;
     }
   });
-  return photographerHeader;
 };
 
-const mediaFactory = new MediasFactory();
-
+/**
+ * Create medias list for page photographer
+ * @param {data} data
+ * @returns {HTMLElement}
+ */
 const createProfileMediasList = (data) => {
   data.media.forEach((media) => {
     if (media.photographerId === Number(urlParams.get("id"))) {
