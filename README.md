@@ -16,8 +16,8 @@ Maquette du prototype :
 https://www.figma.com/file/pt8xJxC1QffW4HX16QhGZJ/UI-Design-FishEye-FR?node-id=0%3A1
 
 # Installation
-Run npm install
+npm install
 
 # Commandes de base
-dev : npm start
-build : npm run webpack
+- dev: npm start
+- build: npm run webpack
