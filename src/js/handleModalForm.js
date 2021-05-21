@@ -13,7 +13,7 @@ const keyCodes = {
 };
 
 const handleModalForm = () => {
-  const formTriggers = document.querySelectorAll('[aria-haspopup="form-dialog"]');
+  const formTriggers = document.querySelectorAll('[aria-haspopup="dialog"]');
 
   const open = function (dialog) {
     const focusableElts = dialog.querySelectorAll(focusableEltsArr);

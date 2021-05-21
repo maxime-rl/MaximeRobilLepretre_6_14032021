@@ -19,16 +19,13 @@ select {
   border: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  /* Adding transition effect */
   transition: color 0.3s ease, background-color 0.3s ease, border-bottom-color 0.3s ease;
-}
-/* For IE <= 11 */
-select::-ms-expand {
-  display: none; 
-}
-select:hover {
-  color: $color-text-primary;
-  background-color: $color-tertiary;
+
+  &:hover,
+  &:focus {
+    color: $color-text-primary;
+    background-color: $color-tertiary;
+  }
 }
 
 .select-icon {

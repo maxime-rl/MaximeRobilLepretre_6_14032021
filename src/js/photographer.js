@@ -59,7 +59,7 @@ export class Photographer {
     const btnElt = createElementFactory("button", {
       type: "button",
       class: "btn btn-contact",
-      "aria-haspopup": "form-dialog",
+      "aria-haspopup": "dialog",
       "aria-controls": "dialog",
       "aria-label": "Contact me"
     }, "Contactez-moi");

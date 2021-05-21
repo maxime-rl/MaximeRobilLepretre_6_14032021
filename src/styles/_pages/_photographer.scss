@@ -299,7 +299,6 @@
     border: none;
     color: $color-primary;
     background-color: transparent;
-    cursor: pointer;
 
     @include breakpoint(md) {
       font-size: 16px;
@@ -316,6 +315,14 @@
     .media-likes {
       margin: 0;
       padding-right: 3px;
+    }
+
+    .far {
+      cursor: pointer;
+
+      &:hover {
+        font-weight: 700;
+      }
     }
   }
 }

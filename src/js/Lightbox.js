@@ -26,11 +26,10 @@ export class Lightbox {
     this.elt = this.buildDOM(url);
     this.medias = medias;
     this.loadMedia(url);
-    // this.trapFocus = this.trapFocus.bind(this);
     this.keyBoard = this.keyBoard.bind(this);
     document.body.style.overflow = "hidden";
     document.body.appendChild(this.elt);
-    document.addEventListener("keydown", this.trapFocus);
+    this.trapFocus();
     document.addEventListener("keyup", this.keyBoard);
   }
 
@@ -184,15 +183,11 @@ export class Lightbox {
   }
 
   trapFocus () {
-    // add all focusable elements inside lightbox
+    // focusable elements inside lightbox
     const focusableEltsArr = 'button, video, [tabindex]:not([tabindex="-1"])';
     const lightboxElt = document.querySelector(".lightbox-dialog");
-
-    // get first element to be focused inside lightbox
     const focusableElts = lightboxElt.querySelectorAll(focusableEltsArr);
     const firstFocusableElt = focusableElts[0];
-
-    // get last element
     const lastFocusableElt = focusableElts[focusableElts.length - 1];
 
     window.setTimeout(() => {
