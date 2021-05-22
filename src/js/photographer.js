@@ -67,7 +67,8 @@ export class Photographer {
 
     this.tags.forEach(tag => {
       const liElTag = document.createElement("li");
-      const aElTag = createElementFactory("a", { href: "#", class: "tag", "data-filter": `${tag}` });
+      // TABINDEX -1 on aElTag for the time being, time to sort media by tags
+      const aElTag = createElementFactory("a", { href: "#", class: "tag", "data-filter": `${tag}`, tabindex: "-1" });
       const spanElTag = createElementFactory("span", { class: "sr-only" }, tag);
 
       aElTag.textContent = "#" + tag;

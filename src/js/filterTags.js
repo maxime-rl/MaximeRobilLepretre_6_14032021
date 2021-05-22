@@ -7,7 +7,6 @@ const filterTagsList = document.querySelector(".tags-list");
 
 /**
  * Create DOM elements for the navigation list
- *
  * @param {object} data
  * @returns {DOM elements} li tags elements
  */
@@ -36,7 +35,6 @@ const createFilterTagsNavList = (data) => {
 
 /**
  * Create tags list without duplicates
- *
  * @param {object} data
  * @returns {array} unique tag array
  */
@@ -54,7 +52,6 @@ const createUniqueTagsArr = (data) => {
 
 /**
  * Sort tags alphabetically
- *
  * @param {object} data
  * @returns {array} unique tag array sort alphabetically for navigation
  */
@@ -66,7 +63,6 @@ const collectSortedTags = (data) => {
 
 /**
  * Filtering photographers by tags with data attributs
- *
  * @param {object} data
  */
 const filteringPhotographersByTags = (data) => {
@@ -106,6 +102,10 @@ const filteringPhotographersByTags = (data) => {
   }
 };
 
+/**
+ * Synchronization of selected tags
+ * @param {DOM element} elt selected tag
+ */
 const updateAllSelectedTags = (elt) => {
   const allTags = document.querySelectorAll(".tag");
   const dataAttrTagNav = elt.dataset.filter;
@@ -121,8 +121,7 @@ const updateAllSelectedTags = (elt) => {
 
 /**
  * compare data attribute filter in tags of each photographer and show or hide photographer
- *
- * @param {DOM element} elt active tag
+ * @param {DOM element} elt selected tag
  * @param {object} data
  */
 const displayPhotographers = (elt, data) => {

@@ -20,20 +20,6 @@ const photographerName = (data) => {
   });
 };
 
-// const updateCheckedInputElts = () => {
-//   form.addEventListener("change", () => {
-//     inputElts.forEach(inputElt => {
-//       checkedInputElts(inputElt);
-//     });
-//     if (firstName.classList.contains("valid") &&
-//         lastName.classList.contains("valid") &&
-//         email.classList.contains("valid") &&
-//         comment.classList.contains("valid")) {
-//       alertComment.textContent = " ";
-//     }
-//   });
-// };
-
 const updateCheckedInputElts = () => {
   form.addEventListener("change", () => {
     checkedFirstNameInputElt();
