@@ -10,48 +10,40 @@
   position: relative;
   z-index: 1;
   margin: 3px 6px 3px 0;
-  padding: 2px 7px;
+  padding: 4px 9px;
   color: $color-primary;
+  background-color: $color-body;
   border: .5px solid $color-border-tag;
   border-radius: 12px;
   font-size: 1.6rem;
 
-  &::after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    opacity: 0;
-    border: .5px solid transparent;
-    border-radius: 12px;
-    background-color: $color-primary;
-    transition: all 0.1s ease-in;
-  }
-
   &:hover {
-    color: $color-body;
-
-    &::after {
-      opacity: 1;
-    }
+    color: $color-text-primary;
+    background-color: $color-tertiary;
   }
 
   &:focus {
-    color: $color-body;
+    color: none;
+    background-color: none;
+  }
 
-    &::after {
-      opacity: 1;
-    }
+  &:focus-visible {
+    color: $color-text-primary;
+    background-color: $color-tertiary;
   }
 
   &--active {
     color: $color-body;
-
-    &::after {
-      opacity: 1;
-    }
+    background-color: $color-primary;
   }
 }
+
+// .photographer .tag,
+// .profil-photographer-header .tag {
+//   cursor: default;
+
+//   &:hover {
+//     color: $color-primary;
+//     background-color: $color-body;
+//   }
+// }

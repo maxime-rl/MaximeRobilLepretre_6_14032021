@@ -20,7 +20,7 @@ import {
 } from "./likes.js";
 
 import { handleModalForm } from "./handleModalForm.js";
-import { photographerName } from "./form.js";
+import { photographerName, submitForm, updateCheckedInputElts } from "./form.js";
 import { Lightbox } from "./Lightbox";
 
 const createPhotographerPage = (data) => {
@@ -33,6 +33,8 @@ const createPhotographerPage = (data) => {
   createLikesCounterDomElements(data);
   updateMediaLikes();
   updateAllLikes();
+  submitForm();
+  updateCheckedInputElts();
   handleModalForm();
   photographerName(data);
   Lightbox.init();

@@ -3,7 +3,7 @@
   padding: 40px 20px 0 20px;
   max-width: 1440px;
 
-  @media (min-width: 1141px) {
+  @include breakpoint(xl) {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: auto;
@@ -11,7 +11,7 @@
     padding: 40px 20px;
   }
 
-  @media (min-width: 1324px) {
+  @media (min-width: 1386px) {
     grid-template-columns: repeat(7, 1fr);
     grid-template-areas: "logo nav nav nav nav . . ";
   }
@@ -26,8 +26,8 @@
     grid-area: nav;
     margin-top: 35px;
 
-    @media (min-width: 1141px) {
-      margin-top: 6px;
+    @include breakpoint(xl) {
+      margin-top: 3.5px;
     }
   }
 
@@ -44,7 +44,6 @@
     border-radius: $radius-btn-img;
     color: $color-text-primary;
     background-color: $color-tertiary;
-    transition: transform 0.3s ease-in-out;
 
     &:focus {
       transform: translate(-50%, -110%);
@@ -61,28 +60,25 @@
 
   h1 {
     position: absolute;
-    top: -169px;
+    top: -181px;
     right: 20px;
     font-size: 14px;
     color: $color-primary;
 
-    @media (min-width: 369.9px) {
-      top: -169px;
+    @media (min-width: 465px) {
+      top: -150px;
     }
 
-    @media (min-width: 445px) {
-      top: -141px;
+    @media (min-width: 809px) {
+      top: -118px;
     }
 
-    @media (min-width: 773px) {
-      top: -113.5px;
-    }
-
-    @media (min-width: 1141px) {
-      top: -93.5px;
+    @include breakpoint(xl) {
+      top: -97px;
+      font-size: 20px;
     }
   
-    @media (min-width: 1324px) {
+    @media (min-width: 1386px) {
       top: -109px;
       font-size: 36px;
     }
@@ -124,17 +120,18 @@
   }
 
   .photographer__location {
-    font-size: 1.6rem;
+    padding: 0 0 10px 0;
+    font-size: 1.8rem;
     color: $color-primary;
   }
 
   .photographer__tagline {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: $color-text-primary;
   }
 
   .photographer__price {
-    font-size: 1.15rem;
+    font-size: 1.4rem;
     color: $color-text-tertiary;
   }
 }
