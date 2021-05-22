@@ -7,7 +7,6 @@ const filterTagsList = document.querySelector(".tags-list");
 
 /**
  * Create DOM elements for the navigation list
- *
  * @param {object} data
  * @returns {DOM elements} li tags elements
  */
@@ -36,7 +35,6 @@ const createFilterTagsNavList = (data) => {
 
 /**
  * Create tags list without duplicates
- *
  * @param {object} data
  * @returns {array} unique tag array
  */
@@ -54,7 +52,6 @@ const createUniqueTagsArr = (data) => {
 
 /**
  * Sort tags alphabetically
- *
  * @param {object} data
  * @returns {array} unique tag array sort alphabetically for navigation
  */
@@ -66,12 +63,12 @@ const collectSortedTags = (data) => {
 
 /**
  * Filtering photographers by tags with data attributs
- *
  * @param {object} data
  */
 const filteringPhotographersByTags = (data) => {
   const listElt = document.querySelector(".photographers-list");
-  const filterTagsNav = filterTagsList.getElementsByClassName("tag");
+  // const filterTagsNav = filterTagsList.getElementsByClassName("tag");
+  const filterTagsNav = document.getElementsByClassName("tag");
 
   for (const tag of filterTagsNav) {
     tag.addEventListener("click", (e) => {
@@ -88,21 +85,43 @@ const filteringPhotographersByTags = (data) => {
       const dataAttrTagNav = elt.dataset.filter;
 
       displayPhotographers(elt, data);
+      updateAllSelectedTags(elt);
 
       if (dataAttrTagNav === "all") {
+        // const allPhotographerTags = document.querySelectorAll(".photographer .tag");
         for (const photographer of listElt.children) {
           photographer.classList.remove("hide");
           photographer.classList.add("show");
         }
+        // IDEA : ALL document tags selected if nav tag ALL selected
+        // for (const tag of allPhotographerTags) {
+        //   tag.classList.add("tag--active");
+        // }
       }
     });
   }
 };
 
 /**
+ * Synchronization of selected tags
+ * @param {DOM element} elt selected tag
+ */
+const updateAllSelectedTags = (elt) => {
+  const allTags = document.querySelectorAll(".tag");
+  const dataAttrTagNav = elt.dataset.filter;
+
+  allTags.forEach(tag => {
+    if (tag.dataset.filter === dataAttrTagNav) {
+      tag.classList.add("tag--active");
+    } else {
+      tag.classList.remove("tag--active");
+    }
+  });
+};
+
+/**
  * compare data attribute filter in tags of each photographer and show or hide photographer
- *
- * @param {DOM element} elt active tag
+ * @param {DOM element} elt selected tag
  * @param {object} data
  */
 const displayPhotographers = (elt, data) => {

@@ -38,12 +38,11 @@
   }
 }
 
-// .photographer .tag,
-// .profil-photographer-header .tag {
-//   cursor: default;
+.profil-photographer-header .tag {
+  cursor: default;
 
-//   &:hover {
-//     color: $color-primary;
-//     background-color: $color-body;
-//   }
-// }
+  &:hover {
+    color: $color-primary;
+    background-color: $color-body;
+  }
+}
