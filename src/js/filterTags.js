@@ -71,7 +71,8 @@ const collectSortedTags = (data) => {
  */
 const filteringPhotographersByTags = (data) => {
   const listElt = document.querySelector(".photographers-list");
-  const filterTagsNav = filterTagsList.getElementsByClassName("tag");
+  // const filterTagsNav = filterTagsList.getElementsByClassName("tag");
+  const filterTagsNav = document.getElementsByClassName("tag");
 
   for (const tag of filterTagsNav) {
     tag.addEventListener("click", (e) => {
@@ -88,15 +89,34 @@ const filteringPhotographersByTags = (data) => {
       const dataAttrTagNav = elt.dataset.filter;
 
       displayPhotographers(elt, data);
+      updateAllSelectedTags(elt);
 
       if (dataAttrTagNav === "all") {
+        // const allPhotographerTags = document.querySelectorAll(".photographer .tag");
         for (const photographer of listElt.children) {
           photographer.classList.remove("hide");
           photographer.classList.add("show");
         }
+        // IDEA : ALL document tags selected if nav tag ALL selected
+        // for (const tag of allPhotographerTags) {
+        //   tag.classList.add("tag--active");
+        // }
       }
     });
   }
+};
+
+const updateAllSelectedTags = (elt) => {
+  const allTags = document.querySelectorAll(".tag");
+  const dataAttrTagNav = elt.dataset.filter;
+
+  allTags.forEach(tag => {
+    if (tag.dataset.filter === dataAttrTagNav) {
+      tag.classList.add("tag--active");
+    } else {
+      tag.classList.remove("tag--active");
+    }
+  });
 };
 
 /**

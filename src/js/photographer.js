@@ -26,7 +26,8 @@ export class Photographer {
 
     this.tags.forEach(tag => {
       const tagElt = createElementFactory("li");
-      const linkTagElt = createElementFactory("a", { href: `photographer.html?id=${this.id}`, class: "tag" });
+      const linkTagElt = createElementFactory("a", { href: "#", class: "tag", "data-filter": `${tag}` });
+      // const linkTagElt = createElementFactory("a", { href: `photographer.html?id=${this.id}`, class: "tag", title: `${this.name}` });
       const screenOnlyTagElt = createElementFactory("span", { class: "sr-only" }, tag);
 
       linkTagElt.textContent = "#" + tag;
