@@ -20,28 +20,73 @@ const photographerName = (data) => {
   });
 };
 
+// const updateCheckedInputElts = () => {
+//   form.addEventListener("change", () => {
+//     inputElts.forEach(inputElt => {
+//       checkedInputElts(inputElt);
+//     });
+//     if (firstName.classList.contains("valid") &&
+//         lastName.classList.contains("valid") &&
+//         email.classList.contains("valid") &&
+//         comment.classList.contains("valid")) {
+//       alertComment.textContent = " ";
+//     }
+//   });
+// };
+
 const updateCheckedInputElts = () => {
   form.addEventListener("change", () => {
-    inputElts.forEach(inputElt => {
-      checkedInputElts(inputElt);
-    });
-    if (firstName.classList.contains("valid") &&
-        lastName.classList.contains("valid") &&
-        email.classList.contains("valid") &&
-        comment.classList.contains("valid")) {
-      alertComment.textContent = " ";
-    }
+    checkedFirstNameInputElt();
+    checkedLastNameInputElt();
+    checkedEmailInputElt();
+    checkedCommentInputElt();
   });
 };
 
-const checkedInputElts = (elt) => {
-  if (elt.value !== "") {
-    elt.classList.add("valid");
-    elt.classList.remove("invalid");
+const checkedFirstNameInputElt = () => {
+  if (firstName.value.length > 2) {
+    firstName.classList.add("valid");
+    firstName.classList.remove("invalid");
     return true;
   } else {
-    elt.classList.add("invalid");
-    elt.classList.remove("valid");
+    firstName.classList.add("invalid");
+    firstName.classList.remove("valid");
+    return false;
+  }
+};
+
+const checkedLastNameInputElt = () => {
+  if (lastName.value.length > 2) {
+    lastName.classList.add("valid");
+    lastName.classList.remove("invalid");
+    return true;
+  } else {
+    lastName.classList.add("invalid");
+    lastName.classList.remove("valid");
+    return false;
+  }
+};
+
+const checkedCommentInputElt = () => {
+  if (comment.value.length > 9) {
+    comment.classList.add("valid");
+    comment.classList.remove("invalid");
+    return true;
+  } else {
+    comment.classList.add("invalid");
+    comment.classList.remove("valid");
+    return false;
+  }
+};
+
+const checkedEmailInputElt = () => {
+  if (email.value !== "") {
+    email.classList.add("valid");
+    email.classList.remove("invalid");
+    return true;
+  } else {
+    email.classList.add("invalid");
+    email.classList.remove("valid");
     return false;
   }
 };
@@ -55,7 +100,7 @@ const submitForm = () => {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      if (checkedInputElts(firstName) && checkedInputElts(lastName) && checkedInputElts(email) && checkedInputElts(comment)) {
+      if (checkedFirstNameInputElt() && checkedLastNameInputElt() && checkedEmailInputElt() && checkedCommentInputElt()) {
         console.log(`Prénom : ${firstName.value}`);
         console.log(`Nom : ${lastName.value}`);
         console.log(`Email : ${email.value}`);

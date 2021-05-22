@@ -321,6 +321,7 @@
       cursor: pointer;
 
       &:hover {
+        color: $color-tertiary;
         font-weight: 700;
       }
     }

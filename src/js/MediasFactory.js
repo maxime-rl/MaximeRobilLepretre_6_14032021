@@ -45,7 +45,8 @@ export class MediasFactory {
     const iconLikeElt = createElementFactory("i", {
       class: "far fa-heart",
       tabindex: "0",
-      "aria-label": "likes"
+      "aria-label": "likes",
+      title: "Like or dislike this media"
     });
 
     likesContainerElt.appendChild(likesElt);
