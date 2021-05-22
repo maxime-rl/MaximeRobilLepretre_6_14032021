@@ -100,6 +100,7 @@ const submitForm = () => {
         dialog.setAttribute("aria-hidden", true);
         profileHeader.setAttribute("aria-hidden", false);
         profileContent.setAttribute("aria-hidden", false);
+        document.body.style.overflow = "auto";
       } else {
         alertComment.textContent = "Vous devez remplir tous les champs du formulaire";
       }
