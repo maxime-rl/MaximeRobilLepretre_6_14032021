@@ -1,9 +1,9 @@
 # FishEye
-Projet n°6 de la formation OpenClassrooms "Développeur Front End"
+***Projet n°6*** de la formation OpenClassrooms "Développeur Front End"
 
-Intitulé : *Créez un site accessible pour une plateforme de photographes*
+***Intitulé*** : Créez un site accessible pour une plateforme de photographes
 
-[Brief client](https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/Front-End+V2/P5+Javascript+%26+Accessibility/Notes+de+re%CC%81union.pdf) |
+[Brief client](https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/Front-End+V2/P5+Javascript+%26+Accessibility/Notes+de+re%CC%81union.pdf)  | 
 [Maquette prototype](https://www.figma.com/file/pt8xJxC1QffW4HX16QhGZJ/UI-Design-FishEye-FR?node-id=0%3A1)
 
 > L'accessibilité est clé !<br>
