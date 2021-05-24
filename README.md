@@ -1,3 +1,5 @@
+[![FishEye Logo](https://maxime-rl.github.io/MaximeRobilLepretre_6_14032021/assets/logo/logo-fisheye.svg)](https://maxime-rl.github.io/MaximeRobilLepretre_6_14032021/)
+
 # FishEye
 ***Projet n°6*** de la formation OpenClassrooms "Développeur Front End"
 
