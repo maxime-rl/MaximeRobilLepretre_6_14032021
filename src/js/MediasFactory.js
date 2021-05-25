@@ -29,7 +29,7 @@ export class MediasFactory {
 
   createMediaDomElts = (MediaElt) => {
     const listElt = document.querySelector(".medias-list");
-    const cardElt = createElementFactory("li", { class: "media-card" });
+    const cardElt = createElementFactory("li", { class: "media-card", "data-filter": `${this.tags}` });
     const figureElt = document.createElement("figure");
     const linkElt = createElementFactory("a", {
       href: `./assets/medias/${this.src}`,

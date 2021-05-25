@@ -9,6 +9,8 @@ const email = document.querySelector("#email");
 const inputElts = document.querySelectorAll("#first-name, #last-name, #email, #comment");
 const comment = document.querySelector("#comment");
 const alertComment = document.querySelector(".alert-comment");
+// Regex
+const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const photographerName = (data) => {
   const nameElt = document.querySelector(".form-photographer-name");
@@ -66,7 +68,7 @@ const checkedCommentInputElt = () => {
 };
 
 const checkedEmailInputElt = () => {
-  if (email.value !== "") {
+  if (emailPattern.test(email.value)) {
     email.classList.add("valid");
     email.classList.remove("invalid");
     return true;

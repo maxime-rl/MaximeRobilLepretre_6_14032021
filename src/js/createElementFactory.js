@@ -3,7 +3,7 @@
  * @param {*} type
  * @param {*} attributes
  * @param  {...any} children
- * @returns
+ * @returns {HTMLElement}
  */
 const createElementFactory = (type, attributes, ...children) => {
   const elt = document.createElement(type);
