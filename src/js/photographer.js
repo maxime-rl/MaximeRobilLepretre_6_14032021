@@ -52,7 +52,7 @@ export class Photographer {
 
   createProfileHeaderDomElements () {
     const headerElt = document.querySelector(".profil-photographer-header");
-    const imageElt = createElementFactory("img", { src: `./assets/medias/${this.portrait}`, alt: `Photo de ${this.name}`, title: `${this.name}` });
+    const imageElt = createElementFactory("img", { src: `./assets/medias/${this.portrait}`, alt: `Photo de profil de ${this.name}`, title: `${this.name}` });
     const nameElt = createElementFactory("h1", {}, `${this.name}`);
     const locationElt = createElementFactory("p", { class: "photographer__location" }, (`${this.city}, ${this.country}`));
     const taglineElt = createElementFactory("p", { class: "photographer__tagline" }, `${this.tagline}`);

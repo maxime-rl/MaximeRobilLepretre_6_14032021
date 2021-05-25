@@ -67,22 +67,19 @@ const collectSortedTags = (data) => {
  */
 const filteringPhotographersByTags = (data) => {
   const listElt = document.querySelector(".photographers-list");
-  // const filterTagsNav = filterTagsList.getElementsByClassName("tag");
   const filterTagsNav = document.getElementsByClassName("tag");
 
   for (const tag of filterTagsNav) {
     tag.addEventListener("click", (e) => {
       const active = document.querySelector(".tag--active");
       const elt = e.target;
+      const dataAttrTagNav = elt.dataset.filter;
 
       if (active) {
         active.classList.remove("tag--active");
       }
 
       elt.classList.add("tag--active");
-
-      // storage data attribute filter on each tag
-      const dataAttrTagNav = elt.dataset.filter;
 
       displayPhotographers(elt, data);
       updateAllSelectedTags(elt);
@@ -125,9 +122,9 @@ const updateAllSelectedTags = (elt) => {
  * @param {object} data
  */
 const displayPhotographers = (elt, data) => {
+  const dataAttrTagNav = elt.dataset.filter;
   const listElt = document.querySelector(".photographers-list");
   const cardsElt = listElt.getElementsByClassName("photographer");
-  const dataAttrTagNav = elt.dataset.filter;
 
   for (let i = 0; i < data.photographers.length; i++) {
     if (!data.photographers[i].tags.includes(dataAttrTagNav)) {
@@ -138,6 +135,22 @@ const displayPhotographers = (elt, data) => {
       cardsElt[i].classList.add("show");
     }
   }
+
+  // IDEA Filter medias by tags
+  // if (window.location.pathname.includes("photographer.html")) {
+  //   const mediasListElts = document.querySelector(".medias-list");
+  //   const mediasCardsElts = mediasListElts.getElementsByClassName("media-card");
+
+  //   for (let i = 0; i < mediasCardsElts.length; i++) {
+  //     if (mediasCardsElts[i].dataset.filter !== dataAttrTagNav) {
+  //       mediasCardsElts[i].classList.add("hide");
+  //       mediasCardsElts[i].classList.remove("show");
+  //     } else {
+  //       mediasCardsElts[i].classList.remove("hide");
+  //       mediasCardsElts[i].classList.add("show");
+  //     }
+  //   }
+  // }
 };
 
 export { createFilterTagsNavList };

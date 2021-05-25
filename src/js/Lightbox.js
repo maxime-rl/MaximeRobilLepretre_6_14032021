@@ -36,9 +36,14 @@ export class Lightbox {
   loadMedia (url) {
     this.url = null;
 
-    const videoElt = createElementFactory("video", { class: "media", preload: "true", controls: "true", loop: "true", autoplay: "false", tabindex: "0" });
-    const imageElt = createElementFactory("img", { class: "media", alt: `${this.url}` });
+    // Transform URL for media title
+    const textElt = url.split("/").pop().replace(/_|.jpg|.mp4/g, " ").trim();
+
+    const videoElt = createElementFactory("video", { class: "media", preload: "true", controls: "true", loop: "true", tabindex: "0", alt: `${textElt}` });
+    const imageElt = createElementFactory("img", { class: "media", alt: `${textElt}` });
     const titleElt = createElementFactory("h2", {});
+
+    titleElt.textContent = textElt;
 
     const container = this.elt.querySelector(".media-container");
     const loaderElt = createElementFactory("div", { class: "media-loading" });
@@ -62,10 +67,6 @@ export class Lightbox {
     this.url = url;
     imageElt.src = url;
     videoElt.src = url;
-
-    // Transform URL for media title
-    const titleContentElt = url.split("/").pop().replace(/_|.jpg|.mp4/g, " ").trim();
-    titleElt.textContent = titleContentElt;
   }
 
   /**
@@ -148,7 +149,8 @@ export class Lightbox {
       class: "btn-prev",
       role: "link",
       "aria-label": "Previous media",
-      tabindex: "0"
+      tabindex: "0",
+      title: "Previous media"
     });
 
     const iconPrevElt = createElementFactory("img", { src: "./assets/icons/arrow-left.svg", alt: " ", "aria-hidden": "true" });
@@ -158,7 +160,8 @@ export class Lightbox {
       class: "btn-next",
       role: "link",
       "aria-label": "Next media",
-      tabindex: "0"
+      tabindex: "0",
+      title: "Next media"
     });
 
     const iconNextElt = createElementFactory("img", { src: "./assets/icons/arrow-right.svg", alt: " ", "aria-hidden": "true" });
