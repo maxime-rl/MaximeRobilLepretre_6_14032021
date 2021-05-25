@@ -6,11 +6,6 @@ const focusableEltsArr = [
   "textarea:not([disabled])",
   '[tabindex]:not([tabindex="-1"])'
 ];
-const keyCodes = {
-  tab: 9,
-  enter: 13,
-  escape: 27
-};
 
 const handleModalForm = () => {
   const formTriggers = document.querySelectorAll('[aria-haspopup="dialog"]');
@@ -39,9 +34,9 @@ const handleModalForm = () => {
       focusableElts.forEach((focusableElt) => {
         if (focusableElt.addEventListener) {
           focusableElt.addEventListener("keydown", (e) => {
-            const tab = e.which === keyCodes.tab;
+            const isTabPressed = e.key === "Tab" || e.keyCode === 9;
 
-            if (!tab) {
+            if (!isTabPressed) {
               return;
             }
 
@@ -86,7 +81,7 @@ const handleModalForm = () => {
     });
 
     trigger.addEventListener("keydown", (e) => {
-      if (e.which === keyCodes.enter) {
+      if (e.key === "Enter") {
         e.preventDefault();
 
         open(dialog);
@@ -105,7 +100,7 @@ const handleModalForm = () => {
     });
 
     dialog.addEventListener("keydown", (e) => {
-      if (e.which === keyCodes.escape) {
+      if (e.key === "Escape") {
         close(dialog, trigger);
       }
     });

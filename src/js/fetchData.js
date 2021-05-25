@@ -20,7 +20,7 @@ import {
 } from "./likes.js";
 
 import { handleModalForm } from "./handleModalForm.js";
-import { photographerName, submitForm, updateCheckedInputElts } from "./form.js";
+import { photographerName, submitForm, updateCheckedInputElts } from "./formValidation.js";
 import { Lightbox } from "./Lightbox";
 
 const createPhotographerPage = (data) => {
